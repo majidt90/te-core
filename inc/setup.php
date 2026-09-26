@@ -149,6 +149,14 @@ function te_core_body_class( $classes ) {
 	if ( te_core_on( 'mobile_dock' ) ) {
 		$classes[] = 'te-has-dock';
 	}
+	$catalog = (string) te_core_get( 'catalog_width' );
+	if ( ! in_array( $catalog, array( 'contained', 'wide', 'full' ), true ) ) {
+		$catalog = 'wide';
+	}
+	$classes[] = 'te-shop-width-' . $catalog;
+	if ( function_exists( 'is_product' ) && is_product() && te_core_on( 'sticky_buybar' ) ) {
+		$classes[] = 'te-buybar-on';
+	}
 	$fit = te_core_get( 'image_fit' );
 	$classes[] = ( 'cover' === $fit ) ? 'te-fit-cover' : 'te-fit-contain';
 	return $classes;

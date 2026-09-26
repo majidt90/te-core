@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 $args = $args ?? array();
 ?>
-<section class="te-section te-recent" id="te-<?php echo esc_attr( $args['uid'] ?? 'recent' ); ?>" data-te-recent data-count="<?php echo esc_attr( (string) te_core_field( $args, 'count' ) ); ?>" hidden>
+<section class="te-section te-recent <?php echo esc_attr( te_core_width_class( $args ) ); ?>" id="te-<?php echo esc_attr( $args['uid'] ?? 'recent' ); ?>" data-te-recent data-count="<?php echo esc_attr( (string) te_core_field( $args, 'count' ) ); ?>" hidden>
 	<div class="te-container">
 		<?php
 		te_core_section_head(

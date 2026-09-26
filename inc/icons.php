@@ -30,6 +30,7 @@ function te_core_icon_paths() {
 		'star'     => '<path d="m12 3.8 2.1 4.6 5 .6-3.7 3.4.9 5-4.3-2.4L7.7 17.4l.9-5L4.9 9l5-.6z"/>',
 		'check'    => '<path d="m5 12 5 5L20 7"/>',
 		'filter'   => '<path d="M4 6h16M7 12h10M10 18h4"/>',
+		'scale'    => '<path d="M12 3v18"/><path d="M6 8h12"/><path d="M8.2 8 6 14.2a2.5 2.5 0 0 0 4.6 0z"/><path d="M15.8 8 13.6 14.2a2.5 2.5 0 0 0 4.6 0z"/>',
 		'plus'     => '<path d="M12 5v14M5 12h14"/>',
 		'minus'    => '<path d="M5 12h14"/>',
 		'trash'    => '<path d="M5 7h14"/><path d="M9 7V5h6v2"/><path d="M7 7l1 13h8l1-13"/>',

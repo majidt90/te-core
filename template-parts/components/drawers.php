@@ -22,6 +22,21 @@ defined( 'ABSPATH' ) || exit;
 	</dialog>
 <?php endif; ?>
 
+<?php if ( te_core_on( 'show_compare' ) && class_exists( 'WooCommerce' ) ) : ?>
+	<dialog class="te-dialog te-dialog--compare" id="te-compare" aria-labelledby="te-compare-title">
+		<div class="te-dialog__bar">
+			<h2 id="te-compare-title"><?php esc_html_e( 'Compare', 'te-core' ); ?></h2>
+			<button type="button" class="te-iconbtn" data-te-close>
+				<?php te_core_icon( 'close' ); ?>
+				<span class="screen-reader-text"><?php esc_html_e( 'Close', 'te-core' ); ?></span>
+			</button>
+		</div>
+		<div class="te-dialog__body" data-te-compare-body>
+			<p class="te-empty-inline"><?php esc_html_e( 'Nothing to compare yet.', 'te-core' ); ?></p>
+		</div>
+	</dialog>
+<?php endif; ?>
+
 <?php if ( te_core_on( 'show_wishlist' ) ) : ?>
 	<dialog class="te-dialog te-dialog--drawer" id="te-wishlist" aria-labelledby="te-wish-title">
 		<div class="te-dialog__bar">

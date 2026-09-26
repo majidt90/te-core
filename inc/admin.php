@@ -556,7 +556,12 @@ function te_core_section_box( $index, $section ) {
 					?>
 					<tr>
 						<th scope="row"><label for="<?php echo esc_attr( $field_id ); ?>"><?php echo esc_html( $field['label'] ); ?></label></th>
-						<td><?php te_core_render_control( $field_name, $field_id, $field, $value ); ?></td>
+						<td>
+							<?php te_core_render_control( $field_name, $field_id, $field, $value ); ?>
+							<?php if ( ! empty( $field['description'] ) ) : ?>
+								<p class="description"><?php echo esc_html( $field['description'] ); ?></p>
+							<?php endif; ?>
+						</td>
 					</tr>
 				<?php endforeach; ?>
 			</table>

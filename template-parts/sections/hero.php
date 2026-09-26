@@ -25,7 +25,7 @@ $image = te_core_media(
 	)
 );
 ?>
-<section class="te-section te-hero <?php echo esc_attr( $align ); ?>" id="te-<?php echo esc_attr( $args['uid'] ?? 'hero' ); ?>">
+<section class="te-section te-hero <?php echo esc_attr( trim( $align . ' ' . te_core_width_class( $args ) ) ); ?>" id="te-<?php echo esc_attr( $args['uid'] ?? 'hero' ); ?>">
 	<div class="te-container te-hero__grid">
 		<div class="te-hero__copy">
 			<?php if ( te_core_field( $args, 'kicker' ) ) : ?>

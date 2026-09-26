@@ -19,6 +19,7 @@ if ( ! $cart ) {
 	echo '</div>';
 	return;
 }
+te_core_shipping_meter();
 ?>
 <ul class="te-mini">
 	<?php foreach ( $cart as $key => $item ) : ?>
@@ -50,6 +51,38 @@ if ( ! $cart ) {
 	<?php endforeach; ?>
 </ul>
 <div class="te-mini__foot">
+	<?php if ( te_core_on( 'show_coupon' ) ) : ?>
+		<form class="te-coupon" data-te-coupon>
+			<label class="screen-reader-text" for="te-coupon"><?php esc_html_e( 'Coupon code', 'te-core' ); ?></label>
+			<input id="te-coupon" type="text" name="coupon" maxlength="40" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="<?php esc_attr_e( 'Coupon code', 'te-core' ); ?>">
+			<button class="te-btn te-btn--ghost" type="submit"><?php esc_html_e( 'Apply', 'te-core' ); ?></button>
+		</form>
+		<?php $applied = WC()->cart->get_applied_coupons(); ?>
+		<?php if ( $applied ) : ?>
+			<ul class="te-coupons">
+				<?php foreach ( $applied as $code ) : ?>
+					<li>
+						<span><?php echo esc_html( $code ); ?></span>
+						<button type="button" data-te-coupon-remove="<?php echo esc_attr( $code ); ?>">
+							<?php esc_html_e( 'Remove', 'te-core' ); ?>
+						</button>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<?php endif; ?>
+	<?php
+	$discount = (float) WC()->cart->get_discount_total();
+	if ( WC()->cart->display_prices_including_tax() ) {
+		$discount += (float) WC()->cart->get_discount_tax();
+	}
+	if ( $discount > 0 ) :
+		?>
+		<p>
+			<span><?php esc_html_e( 'Discount', 'te-core' ); ?></span>
+			<strong><?php echo wp_kses_post( te_core_digits( wc_price( $discount ) ) ); ?></strong>
+		</p>
+	<?php endif; ?>
 	<p>
 		<span><?php esc_html_e( 'Subtotal', 'te-core' ); ?></span>
 		<strong><?php echo wp_kses_post( WC()->cart->get_cart_subtotal() ); ?></strong>

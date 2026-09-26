@@ -13,7 +13,7 @@ if ( '' === (string) te_core_field( $args, 'title' ) && '' === (string) te_core_
 }
 $url = (string) te_core_field( $args, 'cta_url' );
 ?>
-<section class="te-section te-editorial" id="te-<?php echo esc_attr( $args['uid'] ?? 'note' ); ?>">
+<section class="te-section te-editorial <?php echo esc_attr( te_core_width_class( $args ) ); ?>" id="te-<?php echo esc_attr( $args['uid'] ?? 'note' ); ?>">
 	<div class="te-container te-narrow">
 		<?php if ( te_core_field( $args, 'kicker' ) ) : ?>
 			<p class="te-kicker"><?php echo esc_html( te_core_field( $args, 'kicker' ) ); ?></p>

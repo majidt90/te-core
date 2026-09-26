@@ -15,7 +15,10 @@ add_filter( 'woocommerce_loop_add_to_cart_args', 'te_core_loop_cart_args', 10, 2
 add_action( 'woocommerce_product_query', 'te_core_product_query' );
 add_filter( 'woocommerce_output_related_products_args', 'te_core_related_args' );
 add_action( 'woocommerce_after_add_to_cart_button', 'te_core_buybox_note' );
+add_action( 'woocommerce_single_product_summary', 'te_core_low_stock_badge_summary', 11 );
+add_action( 'woocommerce_single_product_summary', 'te_core_product_specs', 25 );
 add_action( 'wp', 'te_core_single_sidebar' );
+add_action( 'wp_footer', 'te_core_buybar', 5 );
 
 /**
  * Replace WC wrappers and the loop chrome that would fight the card.
@@ -44,7 +47,9 @@ function te_core_wc_hooks() {
 	remove_action( 'woocommerce_no_products_found', 'wc_no_products_found', 10 );
 	add_action( 'woocommerce_no_products_found', 'te_core_no_products' );
 
+	add_action( 'woocommerce_before_shop_loop', 'te_core_filter_chips', 18 );
 	add_action( 'woocommerce_before_shop_loop', 'te_core_filter_toggle', 19 );
+	add_action( 'woocommerce_no_products_found', 'te_core_filter_chips', 5 );
 }
 
 /**
@@ -162,6 +167,46 @@ function te_core_related_args( $args ) {
 	$args['posts_per_page'] = $cols;
 	$args['columns']        = $cols;
 	return $args;
+}
+
+/**
+ * Low stock under the single-product price. The card uses the same line.
+ *
+ * @return void
+ */
+function te_core_low_stock_badge_summary() {
+	$product = $GLOBALS['product'] ?? null;
+	if ( is_a( $product, 'WC_Product' ) ) {
+		te_core_low_stock_badge( $product );
+	}
+}
+
+/**
+ * Compact buy bar on small screens. Hidden until the buy box has scrolled away.
+ *
+ * @return void
+ */
+function te_core_buybar() {
+	if ( ! te_core_on( 'sticky_buybar' ) || ! function_exists( 'is_product' ) || ! is_product() ) {
+		return;
+	}
+	$product = wc_get_product( get_queried_object_id() );
+	if ( ! $product || ! $product->is_purchasable() || ! $product->is_type( array( 'simple', 'variable' ) ) ) {
+		return;
+	}
+	$variable = $product->is_type( 'variable' );
+	?>
+	<div class="te-buybar" hidden>
+		<div class="te-buybar__meta">
+			<?php echo $product->get_image( 'thumbnail', array( 'class' => 'te-buybar__img', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<span class="te-buybar__name"><?php echo esc_html( $product->get_name() ); ?></span>
+			<span class="te-buybar__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
+		</div>
+		<button type="button" class="te-btn te-btn--primary" data-te-buybar <?php echo $variable ? 'data-te-buybar-options' : ''; ?>>
+			<?php echo esc_html( $variable ? __( 'Choose options', 'te-core' ) : $product->single_add_to_cart_text() ); ?>
+		</button>
+	</div>
+	<?php
 }
 
 /**

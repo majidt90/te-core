@@ -2,7 +2,7 @@
 Contributors: majidt90
 Requires at least: 6.7
 Tested up to: 7.1
-Requires PHP: 8.0
+Requires PHP: 8.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -53,6 +53,7 @@ Hooks inside those templates are kept. Other WooCommerce markup is styled, not c
 
 = 1.0.0 =
 * First release. Registry-driven settings, mixed-catalog storefront, Persian/RTL, and a performance-first WooCommerce integration.
+* Section width (contained, wide, full), catalog width, low-stock signal, compare, sticky buy bar, key specs, free-shipping meter, cart coupon, hover image, and removable filter chips.
 
 == Upgrade Notice ==
 

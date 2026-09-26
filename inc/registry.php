@@ -249,6 +249,84 @@ function te_core_settings_schema() {
 			'label'   => __( 'Catalog filters', 'te-core' ),
 			'default' => 1,
 		),
+		'catalog_width'        => array(
+			'tab'         => 'shop',
+			'type'        => 'select',
+			'label'       => __( 'Catalog width', 'te-core' ),
+			'description' => __( 'Full width runs the shop edge to edge. Wide keeps a little air on large screens.', 'te-core' ),
+			'options'     => array(
+				'contained' => __( 'Contained', 'te-core' ),
+				'wide'      => __( 'Wide', 'te-core' ),
+				'full'      => __( 'Full width', 'te-core' ),
+			),
+			'default'     => 'wide',
+		),
+		'low_stock'            => array(
+			'tab'         => 'shop',
+			'type'        => 'checkbox',
+			'label'       => __( 'Low stock signal', 'te-core' ),
+			'description' => __( 'Shown only when WooCommerce is tracking stock and the quantity is at or below the limit. No invented scarcity.', 'te-core' ),
+			'default'     => 1,
+		),
+		'low_stock_qty'        => array(
+			'tab'     => 'shop',
+			'type'    => 'number',
+			'label'   => __( 'Low stock at', 'te-core' ),
+			'min'     => 1,
+			'max'     => 20,
+			'default' => 5,
+		),
+		'hover_image'          => array(
+			'tab'         => 'shop',
+			'type'        => 'checkbox',
+			'label'       => __( 'Second image on hover', 'te-core' ),
+			'description' => __( 'The next gallery image, lazy-loaded, and only for a fine pointer. Touch screens stay on the first image.', 'te-core' ),
+			'default'     => 1,
+		),
+		'show_compare'         => array(
+			'tab'         => 'shop',
+			'type'        => 'checkbox',
+			'label'       => __( 'Compare', 'te-core' ),
+			'description' => __( 'Up to four products, stored in this browser. The table is rendered by the server so prices stay exact.', 'te-core' ),
+			'default'     => 1,
+		),
+		'sticky_buybar'        => array(
+			'tab'         => 'shop',
+			'type'        => 'checkbox',
+			'label'       => __( 'Sticky buy bar', 'te-core' ),
+			'description' => __( 'A compact bar on small screens after the buy box scrolls away. Variable products scroll back to the options.', 'te-core' ),
+			'default'     => 1,
+		),
+		'show_specs'           => array(
+			'tab'         => 'shop',
+			'type'        => 'checkbox',
+			'label'       => __( 'Key specs', 'te-core' ),
+			'description' => __( 'The first four visible attributes, in the buy box. Hidden when a product has none.', 'te-core' ),
+			'default'     => 1,
+		),
+		'free_shipping_min'    => array(
+			'tab'         => 'shop',
+			'type'        => 'number',
+			'label'       => __( 'Free-shipping threshold', 'te-core' ),
+			'description' => __( 'Cart subtotal after discounts and before shipping, in store currency. 0 hides the meter. Set this only if that promise is true.', 'te-core' ),
+			'min'         => 0,
+			'max'         => 100000000,
+			'default'     => 0,
+		),
+		'show_coupon'          => array(
+			'tab'         => 'shop',
+			'type'        => 'checkbox',
+			'label'       => __( 'Coupon in the cart drawer', 'te-core' ),
+			'description' => __( 'Applies through WooCommerce, so invalid codes fail honestly.', 'te-core' ),
+			'default'     => 1,
+		),
+		'recent_search'        => array(
+			'tab'         => 'header',
+			'type'        => 'checkbox',
+			'label'       => __( 'Recent searches', 'te-core' ),
+			'description' => __( 'The last few queries on this device. No network request until a search actually runs.', 'te-core' ),
+			'default'     => 1,
+		),
 		'sticky_buybox'        => array(
 			'tab'     => 'shop',
 			'type'    => 'checkbox',
@@ -471,6 +549,27 @@ function te_core_section_types() {
 			),
 		),
 	);
+
+	$widths = array(
+		'hero'       => 'full',
+		'categories' => 'wide',
+		'trust'      => 'full',
+		'banners'    => 'full',
+		'brands'     => 'full',
+	);
+	foreach ( $types as $id => $type ) {
+		$types[ $id ]['fields']['width'] = array(
+			'type'        => 'select',
+			'label'       => __( 'Width', 'te-core' ),
+			'description' => __( 'Full width paints the band edge to edge. Copy stays measured.', 'te-core' ),
+			'options'     => array(
+				'contained' => __( 'Contained', 'te-core' ),
+				'wide'      => __( 'Wide', 'te-core' ),
+				'full'      => __( 'Full width', 'te-core' ),
+			),
+			'default'     => $widths[ $id ] ?? 'contained',
+		);
+	}
 
 	/**
 	 * Filter section types. A custom type needs a template or a render callback.

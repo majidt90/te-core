@@ -82,6 +82,13 @@ $count    = te_core_cart_count();
 					<span class="screen-reader-text"><?php esc_html_e( 'Saved', 'te-core' ); ?></span>
 				</button>
 			<?php endif; ?>
+			<?php if ( te_core_on( 'show_compare' ) && class_exists( 'WooCommerce' ) ) : ?>
+				<button type="button" class="te-iconbtn" data-te-dialog="te-compare" aria-controls="te-compare" aria-expanded="false">
+					<?php te_core_icon( 'scale' ); ?>
+					<span class="te-count" data-te-compare-count hidden>0</span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Compare', 'te-core' ); ?></span>
+				</button>
+			<?php endif; ?>
 			<?php if ( class_exists( 'WooCommerce' ) ) : ?>
 				<button type="button" class="te-iconbtn" data-te-dialog="te-cart" aria-controls="te-cart" aria-expanded="false">
 					<?php te_core_icon( 'bag' ); ?>

@@ -16,6 +16,8 @@ add_action( 'wc_ajax_te_core_qty', 'te_core_ajax_qty' );
 add_action( 'wc_ajax_nopriv_te_core_qty', 'te_core_ajax_qty' );
 add_action( 'wc_ajax_te_core_remove', 'te_core_ajax_remove' );
 add_action( 'wc_ajax_nopriv_te_core_remove', 'te_core_ajax_remove' );
+add_action( 'wc_ajax_te_core_coupon', 'te_core_ajax_coupon' );
+add_action( 'wc_ajax_nopriv_te_core_coupon', 'te_core_ajax_coupon' );
 add_action( 'rest_api_init', 'te_core_rest_routes' );
 
 /**
@@ -113,6 +115,36 @@ function te_core_ajax_remove() {
 }
 
 /**
+ * Apply or remove a coupon through WooCommerce. Invalid codes fail with its notice.
+ *
+ * @return void
+ */
+function te_core_ajax_coupon() {
+	te_core_verify_ajax();
+	if ( ! te_core_on( 'show_coupon' ) || ! function_exists( 'WC' ) || ! WC()->cart ) {
+		wp_send_json_error( array( 'message' => __( 'Cart is not available.', 'te-core' ) ), 400 );
+	}
+	$posted = isset( $_POST['coupon'] ) ? wp_unslash( $_POST['coupon'] ) : '';
+	$raw    = is_string( $posted ) ? wc_format_coupon_code( $posted ) : '';
+	$code = function_exists( 'mb_substr' ) ? mb_substr( $raw, 0, 40 ) : substr( $raw, 0, 40 );
+	if ( '' === $code ) {
+		wp_send_json_error( array( 'message' => __( 'Enter a coupon code.', 'te-core' ) ), 400 );
+	}
+	if ( ! empty( $_POST['remove'] ) ) {
+		WC()->cart->remove_coupon( $code );
+		wp_send_json_success( te_core_cart_payload() );
+	}
+	if ( ! WC()->cart->apply_coupon( $code ) ) {
+		$message = te_core_first_notice();
+		wp_send_json_error(
+			array( 'message' => $message ? $message : __( 'Coupon was not applied.', 'te-core' ) ),
+			400
+		);
+	}
+	wp_send_json_success( te_core_cart_payload() );
+}
+
+/**
  * First WooCommerce notice, then clear the queue so it is not printed twice.
  *
  * @return string
@@ -179,6 +211,22 @@ function te_core_rest_routes() {
 			),
 		)
 	);
+	if ( te_core_on( 'show_compare' ) ) {
+		register_rest_route(
+			'te-core/v1',
+			'/compare',
+			array(
+				'methods'             => 'GET',
+				'callback'            => 'te_core_rest_compare',
+				'permission_callback' => '__return_true',
+				'args'                => array(
+					'ids' => array(
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+				),
+			)
+		);
+	}
 	register_rest_route(
 		'te-core/v1',
 		'/quick-view',
@@ -351,6 +399,21 @@ function te_core_rest_cards( $request ) {
 	}
 	echo '</ul>';
 	return array( 'html' => ob_get_clean() );
+}
+
+/**
+ * Compare table. Built only when the dialog asks for it.
+ *
+ * @param WP_REST_Request $request Request.
+ * @return array<string,string>
+ */
+function te_core_rest_compare( $request ) {
+	$ids = array_slice(
+		array_filter( array_map( 'absint', explode( ',', (string) $request->get_param( 'ids' ) ) ) ),
+		0,
+		4
+	);
+	return array( 'html' => te_core_compare_html( $ids ) );
 }
 
 /**
