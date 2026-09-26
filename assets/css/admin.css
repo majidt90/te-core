@@ -1,0 +1,66 @@
+/**
+ * Only what WordPress does not already provide for a section list.
+ */
+
+.te-status {
+	margin: 16px 0;
+}
+
+.te-status ul {
+	margin: 8px 0 0 1.2em;
+	list-style: disc;
+}
+
+.te-sections-layout {
+	max-width: 860px;
+	margin-top: 16px;
+}
+
+.te-section {
+	margin-bottom: 12px;
+}
+
+.te-drag {
+	cursor: move;
+	color: #787c82;
+	margin-inline-end: 6px;
+}
+
+.te-section__uid {
+	margin-inline-start: 8px;
+	color: #787c82;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.te-section.is-closed .inside {
+	display: none;
+}
+
+.te-placeholder {
+	height: 48px;
+	margin-bottom: 12px;
+	border: 1px dashed #c3c4c7;
+	background: #f6f7f7;
+}
+
+.te-media img {
+	display: block;
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	margin-bottom: 8px;
+	border: 1px solid #dcdcde;
+	background: #f6f7f7;
+}
+
+.te-reset-form {
+	max-width: 860px;
+	margin-top: -8px;
+}
+
+.te-section .form-table th {
+	width: 180px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
