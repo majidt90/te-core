@@ -16,7 +16,7 @@ get_header();
 	<?php te_core_render_sections(); ?>
 	<?php if ( is_home() ) : ?>
 		<?php get_template_part( 'template-parts/content/loop' ); ?>
-	<?php elseif ( have_posts() ) : ?>
+	<?php elseif ( te_core_on( 'show_front_content' ) && have_posts() ) : ?>
 		<?php
 		while ( have_posts() ) :
 			the_post();

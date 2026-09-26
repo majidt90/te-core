@@ -101,7 +101,17 @@ function te_core_card_category( $product ) {
 	if ( empty( $terms ) || is_wp_error( $terms ) ) {
 		return;
 	}
-	$term = $terms[0];
+	$skip = te_core_hidden_term_ids();
+	$term = null;
+	foreach ( $terms as $candidate ) {
+		if ( ! in_array( (int) $candidate->term_id, $skip, true ) ) {
+			$term = $candidate;
+			break;
+		}
+	}
+	if ( ! $term ) {
+		return;
+	}
 	$link = get_term_link( $term );
 	if ( is_wp_error( $link ) ) {
 		return;
@@ -337,6 +347,7 @@ function te_core_render_filters() {
 			'hide_empty' => true,
 			'parent'     => 0,
 			'number'     => 24,
+			'exclude'    => te_core_hidden_term_ids(),
 		)
 	);
 	?>
@@ -385,9 +396,28 @@ function te_core_render_filters() {
 			<input type="checkbox" name="instock" value="1" <?php checked( $instock ); ?>>
 			<span><?php esc_html_e( 'In stock only', 'te-core' ); ?></span>
 		</label>
-		<?php te_core_preserve_query( array( 'min_price', 'max_price', 'instock', 'paged' ) ); ?>
+		<?php
+		$sale_on = ! empty( $_GET['onsale'] ) || ( isset( $_GET['te_source'] ) && 'sale' === sanitize_key( wp_unslash( $_GET['te_source'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$rated   = isset( $_GET['min_rating'] ) ? absint( $_GET['min_rating'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		?>
+		<label class="te-check">
+			<input type="checkbox" name="onsale" value="1" <?php checked( $sale_on ); ?>>
+			<span><?php esc_html_e( 'On sale', 'te-core' ); ?></span>
+		</label>
+		<label class="te-check">
+			<input type="checkbox" name="min_rating" value="4" <?php checked( $rated >= 4 ); ?>>
+			<span><?php echo esc_html( te_core_digits( __( 'Rated 4 and up', 'te-core' ) ) ); ?></span>
+		</label>
+		<?php
+		$drop = array( 'min_price', 'max_price', 'instock', 'onsale', 'min_rating', 'paged' );
+		if ( isset( $_GET['te_source'] ) && 'sale' === sanitize_key( wp_unslash( $_GET['te_source'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$drop[] = 'te_source';
+		}
+		te_core_preserve_query( $drop );
+		?>
 		<button class="te-btn te-btn--primary" type="submit"><?php esc_html_e( 'Apply', 'te-core' ); ?></button>
 	</form>
+	<?php te_core_attribute_filters(); ?>
 	<?php if ( is_active_sidebar( 'shop' ) ) : ?>
 		<div class="te-filter te-filter--widgets">
 			<?php dynamic_sidebar( 'shop' ); ?>
@@ -496,15 +526,18 @@ function te_core_hero_facts() {
 			'value' => isset( $counts->publish ) ? (int) $counts->publish : 0,
 			'label' => __( 'Products', 'te-core' ),
 		);
-		$cats = wp_count_terms(
+		$cats = get_terms(
 			array(
 				'taxonomy'   => 'product_cat',
 				'hide_empty' => true,
+				'parent'     => 0,
+				'exclude'    => te_core_hidden_term_ids(),
+				'fields'     => 'ids',
 			)
 		);
 		if ( ! is_wp_error( $cats ) ) {
 			$facts[] = array(
-				'value' => (int) $cats,
+				'value' => is_array( $cats ) ? count( $cats ) : 0,
 				'label' => __( 'Departments', 'te-core' ),
 			);
 		}
@@ -645,7 +678,7 @@ function te_core_product_specs() {
  * @return bool
  */
 function te_core_is_filter_arg( $key ) {
-	if ( in_array( $key, array( 'min_price', 'max_price', 'instock', 'te_source', 'rating_filter' ), true ) ) {
+	if ( in_array( $key, array( 'min_price', 'max_price', 'instock', 'te_source', 'rating_filter', 'onsale', 'min_rating' ), true ) ) {
 		return true;
 	}
 	return 0 === strpos( $key, 'filter_' ) || 0 === strpos( $key, 'query_type_' );
@@ -737,6 +770,18 @@ function te_core_filter_chips() {
 		$chips[] = array(
 			'label' => __( 'In stock only', 'te-core' ),
 			'url'   => te_core_query_url( array( 'instock' ) ),
+		);
+	}
+	if ( ! empty( $args['onsale'] ) ) {
+		$chips[] = array(
+			'label' => __( 'On sale', 'te-core' ),
+			'url'   => te_core_query_url( array( 'onsale' ) ),
+		);
+	}
+	if ( ! empty( $args['min_rating'] ) ) {
+		$chips[] = array(
+			'label' => __( 'Rated 4 and up', 'te-core' ),
+			'url'   => te_core_query_url( array( 'min_rating' ) ),
 		);
 	}
 	$sources = array(

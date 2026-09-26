@@ -21,3 +21,6 @@ if ( te_core_on( 'announcement_enabled' ) && te_core_on( 'announcement_dismiss' 
 	echo '<script>try{if(sessionStorage.getItem("te_core_announce")==="1"){document.documentElement.classList.add("te-announce-off");}}catch(e){}</script>';
 }
 get_template_part( 'template-parts/header/site-header' );
+if ( function_exists( 'te_core_flash' ) ) {
+	te_core_flash();
+}

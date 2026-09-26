@@ -16,6 +16,7 @@ get_header();
 		<p><?php esc_html_e( 'Search, or go back to the front.', 'te-core' ); ?></p>
 		<?php get_search_form(); ?>
 		<p><a class="te-link" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Back home', 'te-core' ); ?></a></p>
+		<?php if ( function_exists( 'te_core_suggest_products' ) ) { te_core_suggest_products(); } ?>
 	</div>
 </main>
 <?php

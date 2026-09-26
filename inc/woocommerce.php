@@ -151,6 +151,25 @@ function te_core_product_query( $q ) {
 			'operator' => 'NOT IN',
 		);
 	}
+	if ( ! empty( $_GET['onsale'] ) && function_exists( 'wc_get_product_ids_on_sale' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$sale_ids = array_map( 'absint', (array) wc_get_product_ids_on_sale() );
+		$current  = $q->get( 'post__in' );
+		if ( is_array( $current ) && $current ) {
+			$sale_ids = array_values( array_intersect( array_map( 'absint', $current ), $sale_ids ) );
+		}
+		$q->set( 'post__in', $sale_ids ? $sale_ids : array( 0 ) );
+	}
+	$min_rating = isset( $_GET['min_rating'] ) ? absint( $_GET['min_rating'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( $min_rating >= 1 && $min_rating <= 5 ) {
+		$meta   = (array) $q->get( 'meta_query' );
+		$meta[] = array(
+			'key'     => '_wc_average_rating',
+			'value'   => $min_rating,
+			'compare' => '>=',
+			'type'    => 'DECIMAL(10,2)',
+		);
+		$q->set( 'meta_query', $meta );
+	}
 	if ( count( $tax ) > ( $q->get( 'tax_query' ) ? count( (array) $q->get( 'tax_query' ) ) : 0 ) ) {
 		$q->set( 'tax_query', $tax );
 	}
@@ -255,4 +274,5 @@ function te_core_no_products() {
 	echo '<p>' . esc_html__( 'Clear a filter, or search the whole catalog.', 'te-core' ) . '</p>';
 	get_search_form();
 	echo '</div>';
+	te_core_suggest_products();
 }

@@ -85,20 +85,100 @@ function te_core_persian_digits_enabled() {
 }
 
 /**
- * Replace ASCII digits. Safe to run twice.
+ * Replace ASCII digits. HTML tags and character references are left intact,
+ * so a currency entity such as &#x062A; is not rewritten into visible text.
  *
  * @param string $text Text that may contain digits.
  * @return string
  */
 function te_core_digits( $text ) {
-	if ( ! te_core_persian_digits_enabled() || ! is_string( $text ) || '' === $text ) {
+	if ( ! te_core_persian_digits_enabled() || ! is_string( $text ) || '' === $text || ! preg_match( '/\d/', $text ) ) {
 		return $text;
 	}
-	return str_replace(
-		array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ),
-		array( '۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹' ),
+	$held = array();
+	$safe = preg_replace_callback(
+		'/&#x[0-9a-fA-F]+;|&#\d+;|&[a-zA-Z][a-zA-Z0-9]+;|<[^>]*>/',
+		static function ( $match ) use ( &$held ) {
+			$token          = 'TEHOLD' . str_repeat( 'Z', count( $held ) + 1 ) . 'END';
+			$held[ $token ] = $match[0];
+			return $token;
+		},
 		$text
 	);
+	if ( ! is_string( $safe ) ) {
+		return $text;
+	}
+	$safe = str_replace(
+		array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ),
+		array( '۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹' ),
+		$safe
+	);
+	return $held ? strtr( $safe, $held ) : $safe;
+}
+
+/**
+ * Turn numeric character references above ASCII into real characters.
+ * Used on price HTML after digits are converted, so a Persian currency
+ * symbol stored as &#x062A; renders as text instead of an entity.
+ *
+ * @param string $html HTML.
+ * @return string
+ */
+function te_core_decode_marks( $html ) {
+	if ( ! is_string( $html ) || false === strpos( $html, '&#' ) ) {
+		return $html;
+	}
+	$decoded = preg_replace_callback(
+		'/&#x([0-9a-fA-F]+);|&#(\d+);/',
+		static function ( $match ) {
+			$point = '' !== $match[1] ? hexdec( $match[1] ) : (int) $match[2];
+			if ( $point < 128 || $point > 0x10FFFF || ( $point >= 0xD800 && $point <= 0xDFFF ) ) {
+				return $match[0];
+			}
+			$char = function_exists( 'mb_chr' ) ? mb_chr( $point, 'UTF-8' ) : html_entity_decode( $match[0], ENT_HTML5, 'UTF-8' );
+			return is_string( $char ) && '' !== $char ? $char : $match[0];
+		},
+		$html
+	);
+	return is_string( $decoded ) ? $decoded : $html;
+}
+
+/**
+ * Plain price text for JSON and copy. Entities become characters.
+ *
+ * @param string $html Price HTML.
+ * @return string
+ */
+function te_core_price_text( $html ) {
+	$text = wp_strip_all_tags( te_core_decode_marks( (string) $html ) );
+	$text = preg_replace( '/\s+/u', ' ', $text );
+	return trim( is_string( $text ) ? $text : '' );
+}
+
+/**
+ * Product categories that should not be offered as departments.
+ * The WooCommerce default category is usually the leftover "Uncategorized".
+ *
+ * @return array<int,int>
+ */
+function te_core_hidden_term_ids() {
+	static $ids = null;
+	if ( null !== $ids ) {
+		return $ids;
+	}
+	$ids     = array();
+	$default = absint( get_option( 'default_product_cat' ) );
+	if ( $default ) {
+		$ids[] = $default;
+	}
+	if ( taxonomy_exists( 'product_cat' ) ) {
+		$slug = get_term_by( 'slug', 'uncategorized', 'product_cat' );
+		if ( $slug && ! is_wp_error( $slug ) ) {
+			$ids[] = (int) $slug->term_id;
+		}
+	}
+	$ids = array_values( array_unique( array_filter( $ids ) ) );
+	return $ids;
 }
 
 /**
@@ -131,7 +211,14 @@ function te_core_sanitize_field( $value, $field ) {
 			return $color ? $color : ( $field['default'] ?? '#c2410c' );
 
 		case 'url':
-			return esc_url_raw( is_string( $value ) ? $value : '' );
+			$value = is_string( $value ) ? trim( $value ) : '';
+			if ( '' === $value ) {
+				return '';
+			}
+			$protocols   = wp_allowed_protocols();
+			$protocols[] = 'tel';
+			$protocols[] = 'tg';
+			return esc_url_raw( $value, $protocols );
 
 		case 'textarea':
 			$text = sanitize_textarea_field( is_string( $value ) ? $value : '' );

@@ -34,6 +34,10 @@ function te_core_icon_paths() {
 		'plus'     => '<path d="M12 5v14M5 12h14"/>',
 		'minus'    => '<path d="M5 12h14"/>',
 		'trash'    => '<path d="M5 7h14"/><path d="M9 7V5h6v2"/><path d="M7 7l1 13h8l1-13"/>',
+		'up'       => '<path d="M12 19V5"/><path d="m6 11 6-6 6 6"/>',
+		'share'    => '<circle cx="6" cy="12" r="2"/><circle cx="16" cy="7" r="2"/><circle cx="16" cy="17" r="2"/><path d="m8 11 6-3M8 13l6 3"/>',
+		'copy'     => '<rect x="8" y="8" width="11" height="12" rx="2"/><path d="M6 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v1"/>',
+		'list'     => '<path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/>',
 	);
 }
 

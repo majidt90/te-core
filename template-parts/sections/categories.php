@@ -19,6 +19,7 @@ $terms = get_terms(
 		'parent'     => 0,
 		'number'     => max( 2, min( 12, $count ) ),
 		'orderby'    => 'menu_order',
+		'exclude'    => te_core_hidden_term_ids(),
 	)
 );
 if ( ! $terms || is_wp_error( $terms ) ) {

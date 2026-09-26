@@ -11,6 +11,7 @@ add_action( 'before_woocommerce_init', 'te_core_declare_wc_compat' );
 add_filter( 'woocommerce_enqueue_styles', 'te_core_strip_wc_styles' );
 add_action( 'wp_head', 'te_core_website_schema', 20 );
 add_filter( 'wp_get_attachment_image_attributes', 'te_core_image_attributes', 10, 3 );
+add_filter( 'woocommerce_placeholder_img', 'te_core_placeholder_alt' );
 
 /**
  * High-performance order storage and block checkout stay compatible.
@@ -73,6 +74,9 @@ function te_core_website_schema() {
  */
 function te_core_image_attributes( $attr, $attachment, $size ) {
 	unset( $attachment );
+	if ( ! is_admin() && ! empty( $attr['src'] ) && false !== strpos( (string) $attr['src'], 'woocommerce-placeholder' ) ) {
+		$attr['alt'] = '';
+	}
 	if ( is_admin() ) {
 		return $attr;
 	}
@@ -91,4 +95,18 @@ function te_core_image_attributes( $attr, $attachment, $size ) {
 	}
 	$attr['decoding'] = 'async';
 	return $attr;
+}
+
+/**
+ * Placeholder images are decorative. The translated alt is not a product name.
+ *
+ * @param string $html Image HTML.
+ * @return string
+ */
+function te_core_placeholder_alt( $html ) {
+	if ( ! is_string( $html ) ) {
+		return $html;
+	}
+	$clean = preg_replace( '/ alt="[^"]*"/', ' alt=""', $html, 1 );
+	return is_string( $clean ) ? $clean : $html;
 }

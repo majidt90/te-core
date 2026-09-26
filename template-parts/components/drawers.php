@@ -93,6 +93,7 @@ function te_core_category_panel() {
 			'hide_empty' => true,
 			'parent'     => 0,
 			'orderby'    => 'menu_order',
+			'exclude'    => te_core_hidden_term_ids(),
 		)
 	);
 	if ( ! $parents || is_wp_error( $parents ) ) {

@@ -544,4 +544,107 @@
 	if (document.body.classList.contains('te-motion') === false && !document.body.classList.contains('te-reduce')) {
 		document.body.classList.add('te-motion');
 	}
+
+	function copyText(value) {
+		if (navigator.clipboard && navigator.clipboard.writeText) {
+			return navigator.clipboard.writeText(value).catch(function () { return copyFallback(value); });
+		}
+		copyFallback(value);
+		return Promise.resolve();
+	}
+	function copyFallback(value) {
+		var field = document.createElement('textarea');
+		field.value = value;
+		field.setAttribute('readonly', '');
+		field.style.position = 'fixed';
+		field.style.insetInlineStart = '-999px';
+		document.body.appendChild(field);
+		field.select();
+		try { document.execCommand('copy'); } catch (e) {}
+		field.remove();
+	}
+
+	document.addEventListener('click', function (event) {
+		var share = event.target.closest('[data-te-share]');
+		if (share) {
+			event.preventDefault();
+			var url = share.getAttribute('data-url') || window.location.href;
+			var title = share.getAttribute('data-title') || document.title;
+			if (navigator.share) {
+				navigator.share({ title: title, url: url }).catch(function () {});
+				return;
+			}
+			copyText(url).then(function () { live(i18n.copied || ''); });
+			return;
+		}
+		var copy = event.target.closest('[data-te-copy]');
+		if (copy) {
+			event.preventDefault();
+			copyText(copy.getAttribute('data-te-copy') || '').then(function () { live(i18n.skuCopied || i18n.copied || ''); });
+		}
+	});
+
+	var topBtn = qs('[data-te-top]');
+	if (topBtn) {
+		var paintTop = function () { topBtn.hidden = window.scrollY < 700; };
+		window.addEventListener('scroll', paintTop, { passive: true });
+		paintTop();
+		topBtn.addEventListener('click', function () {
+			var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+		});
+	}
+
+	var viewList = document.documentElement.classList.contains('te-view-list');
+	qsa('[data-te-view]').forEach(function (btn) {
+		var on = (btn.getAttribute('data-te-view') === 'list') === viewList;
+		btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+	});
+	document.addEventListener('click', function (event) {
+		var view = event.target.closest('[data-te-view]');
+		if (!view) return;
+		var list = view.getAttribute('data-te-view') === 'list';
+		document.documentElement.classList.toggle('te-view-list', list);
+		try { localStorage.setItem('te_core_view', list ? 'list' : 'grid'); } catch (e) {}
+		qsa('[data-te-view]').forEach(function (btn) {
+			btn.setAttribute('aria-pressed', (btn.getAttribute('data-te-view') === 'list') === list ? 'true' : 'false');
+		});
+	});
+
+	var more = qs('[data-te-more]');
+	var moreBtn = qs('[data-te-more-btn]');
+	if (more && moreBtn) {
+		more.hidden = false;
+		document.documentElement.classList.add('te-has-more');
+		moreBtn.addEventListener('click', function () {
+			var url = moreBtn.getAttribute('data-url');
+			if (!url || moreBtn.getAttribute('aria-busy') === 'true') return;
+			moreBtn.setAttribute('aria-busy', 'true');
+			var label = moreBtn.textContent;
+			moreBtn.textContent = i18n.loadingMore || label;
+			fetch(url, { credentials: 'same-origin' }).then(function (res) { return res.text(); }).then(function (html) {
+				var doc = new DOMParser().parseFromString(html, 'text/html');
+				var items = doc.querySelectorAll('.te-catalog__main ul.products > li');
+				var list = qs('.te-catalog__main ul.products');
+				if (list) {
+					Array.prototype.forEach.call(items, function (item) { list.appendChild(document.importNode(item, true)); });
+				}
+				var next = doc.querySelector('[data-te-more-btn]');
+				if (next && next.getAttribute('data-url')) {
+					moreBtn.setAttribute('data-url', next.getAttribute('data-url'));
+					moreBtn.textContent = label;
+					moreBtn.removeAttribute('aria-busy');
+				} else {
+					more.hidden = true;
+					document.documentElement.classList.remove('te-has-more');
+				}
+				paintWish();
+				paintCompare();
+			}).catch(function () {
+				moreBtn.textContent = label;
+				moreBtn.removeAttribute('aria-busy');
+				live(i18n.error || '');
+			});
+		});
+	}
 })();

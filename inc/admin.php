@@ -292,10 +292,20 @@ function te_core_status_box() {
 				echo esc_html(
 					sprintf(
 						/* translators: 1: active sections, 2: saved sections */
-						__( '%1$d homepage sections active, %2$d saved.', 'te-core' ),
-						$active,
-						$count
-					)
+				__( '%1$d homepage sections active, %2$d saved.', 'te-core' ),
+					$active,
+					$count
+				)
+			);
+			?>
+			</li>
+			<li>
+				<?php
+				$catalog = te_core_locale_mofile( determine_locale() );
+				echo esc_html(
+					( '' !== $catalog && is_textdomain_loaded( 'te-core' ) )
+						? __( 'Theme translations are loaded.', 'te-core' )
+						: __( 'Theme translations are not loaded for this locale.', 'te-core' )
 				);
 				?>
 			</li>

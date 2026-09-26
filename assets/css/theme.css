@@ -744,13 +744,13 @@ ul { margin: 0; padding: 0; }
 	padding: 0;
 	color: var(--te-ink);
 	background: var(--te-surface);
-	max-width: calc(100vw - 24px);
+	max-width: calc(100% - 24px);
 }
 
 .te-dialog::backdrop { background: rgba(28, 25, 23, 0.4); }
 
 .te-dialog--drawer {
-	width: min(420px, 100vw);
+	width: min(420px, 100%);
 	height: 100dvh;
 	max-height: 100dvh;
 	margin: 0;
@@ -758,9 +758,9 @@ ul { margin: 0; padding: 0; }
 	border-inline-start: 1px solid var(--te-line);
 }
 
-.te-dialog--quick { width: min(860px, calc(100vw - 24px)); border-radius: 20px; }
-.te-dialog--compare { width: min(960px, calc(100vw - 24px)); border-radius: 20px; max-height: min(86dvh, 800px); }
-.te-dialog--panel { width: min(920px, calc(100vw - 24px)); border-radius: 20px; max-height: min(80dvh, 760px); }
+.te-dialog--quick { width: min(860px, calc(100% - 24px)); border-radius: 20px; }
+.te-dialog--compare { width: min(960px, calc(100% - 24px)); border-radius: 20px; max-height: min(86dvh, 800px); }
+.te-dialog--panel { width: min(920px, calc(100% - 24px)); border-radius: 20px; max-height: min(80dvh, 760px); }
 
 .te-dialog__bar {
 	display: flex;
@@ -858,6 +858,125 @@ html.te-locked { overflow: hidden; }
 }
 
 @media print {
-	.te-header, .te-dock, .te-announce, .te-dialog, .te-dept, .te-buybar { display: none !important; }
+	.te-header, .te-dock, .te-announce, .te-dialog, .te-dept, .te-buybar, .te-top { display: none !important; }
 	body { background: #fff; }
 }
+
+.te-flash {
+	width: min(calc(100% - 32px), var(--te-width));
+	margin: 12px auto 0;
+	padding: 10px 14px;
+	background: var(--te-surface);
+	border: 1px solid var(--te-line);
+	border-radius: 12px;
+	font-size: 14px;
+}
+
+.te-top {
+	position: fixed;
+	z-index: 34;
+	inset-inline-end: 16px;
+	bottom: 16px;
+	width: 44px;
+	height: 44px;
+	border: 1px solid var(--te-line-strong);
+	border-radius: 999px;
+	background: var(--te-surface);
+	color: var(--te-ink);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 8px 24px rgba(28, 25, 23, 0.08);
+}
+@media (max-width: 782px) {
+	.te-has-dock .te-top { bottom: calc(78px + env(safe-area-inset-bottom)); }
+}
+
+.te-hp {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+}
+
+.te-social { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; margin: 12px 0 0; font-size: 14px; }
+.te-social a { text-decoration: none; }
+
+.te-faq__list details { border-top: 1px solid var(--te-line); padding: 12px 0; }
+.te-faq__list summary { cursor: pointer; font-weight: 600; }
+.te-faq__list details p { margin: 8px 0 0; color: var(--te-ink-soft); }
+
+.te-quotes__list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 16px;
+	list-style: none;
+	margin-top: 8px;
+}
+.te-quotes blockquote {
+	margin: 0;
+	padding: 18px;
+	background: var(--te-surface);
+	border: 1px solid var(--te-line);
+	border-radius: var(--te-radius);
+}
+.te-quotes footer { margin-top: 12px; color: var(--te-muted); font-size: 13px; }
+
+.te-noteform, .te-track {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	margin-top: 12px;
+}
+.te-noteform input[type="email"],
+.te-track input[type="text"],
+.te-track input[type="email"] {
+	flex: 1 1 200px;
+	min-height: 44px;
+	border: 1px solid var(--te-line-strong);
+	border-radius: 999px;
+	background: var(--te-surface);
+	padding: 8px 14px;
+}
+.te-track {
+	flex-direction: column;
+	align-items: stretch;
+	max-width: 32rem;
+	margin: 28px 0;
+	padding: 18px;
+	background: var(--te-surface);
+	border: 1px solid var(--te-line);
+	border-radius: var(--te-radius);
+}
+.te-track h2 { margin-bottom: 4px; }
+.te-track label { font-size: 13px; color: var(--te-muted); }
+.te-track__miss { color: var(--te-danger); margin: 0; }
+.te-track__result { display: grid; gap: 8px; margin: 0 0 8px; }
+.te-track__result div { display: flex; justify-content: space-between; gap: 12px; }
+.te-track__result dt { color: var(--te-muted); }
+.te-track__result dd { margin: 0; text-align: end; }
+
+.te-view {
+	display: inline-flex;
+	border: 1px solid var(--te-line);
+	border-radius: 999px;
+	overflow: hidden;
+	margin-inline-start: 8px;
+	vertical-align: middle;
+}
+.te-view__btn {
+	border: 0;
+	background: transparent;
+	min-height: 40px;
+	padding: 6px 12px;
+	color: var(--te-muted);
+}
+.te-view__btn[aria-pressed="true"] { background: var(--te-ink); color: var(--te-surface); }
+
+.te-more { display: flex; justify-content: center; margin: 20px 0 8px; }
+html.te-has-more .te-catalog__main .woocommerce-pagination { display: none; }
+
+.te-suggest-block { margin-top: 28px; }
+.te-suggest-block h2 { margin-bottom: 14px; }

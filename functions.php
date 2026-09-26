@@ -24,5 +24,6 @@ require TE_CORE_DIR . '/inc/assets.php';
 require TE_CORE_DIR . '/inc/performance.php';
 require TE_CORE_DIR . '/inc/template-tags.php';
 require TE_CORE_DIR . '/inc/woocommerce.php';
+require TE_CORE_DIR . '/inc/store.php';
 require TE_CORE_DIR . '/inc/ajax.php';
 require TE_CORE_DIR . '/inc/admin.php';

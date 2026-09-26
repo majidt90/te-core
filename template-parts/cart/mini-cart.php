@@ -20,6 +20,7 @@ if ( ! $cart ) {
 	return;
 }
 te_core_shipping_meter();
+te_core_min_order_note();
 ?>
 <ul class="te-mini">
 	<?php foreach ( $cart as $key => $item ) : ?>
@@ -50,6 +51,7 @@ te_core_shipping_meter();
 		</li>
 	<?php endforeach; ?>
 </ul>
+<?php te_core_cart_cross_sell(); ?>
 <div class="te-mini__foot">
 	<?php if ( te_core_on( 'show_coupon' ) ) : ?>
 		<form class="te-coupon" data-te-coupon>

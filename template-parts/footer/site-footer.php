@@ -20,16 +20,19 @@ defined( 'ABSPATH' ) || exit;
 			<?php if ( te_core_get( 'payment_note' ) ) : ?>
 				<p class="te-footer__note"><?php echo esc_html( te_core_get( 'payment_note' ) ); ?></p>
 			<?php endif; ?>
+			<?php te_core_social_links(); ?>
 		</div>
 		<?php
 		$areas = array( 'footer-1', 'footer-2', 'footer-3' );
 		$any   = false;
-		foreach ( $areas as $area ) {
-			if ( is_active_sidebar( $area ) ) {
-				$any = true;
-				echo '<div class="te-footer__col">';
-				dynamic_sidebar( $area );
-				echo '</div>';
+		if ( te_core_on( 'footer_widgets' ) ) {
+			foreach ( $areas as $area ) {
+				if ( is_active_sidebar( $area ) ) {
+					$any = true;
+					echo '<div class="te-footer__col">';
+					dynamic_sidebar( $area );
+					echo '</div>';
+				}
 			}
 		}
 		if ( ! $any ) {
@@ -105,7 +108,13 @@ function te_core_footer_fallback() {
 		echo '<li><a href="' . esc_url( te_core_source_url( 'sale' ) ) . '">' . esc_html__( 'On sale', 'te-core' ) . '</a></li>';
 		echo '<li><a href="' . esc_url( te_core_account_url() ) . '">' . esc_html__( 'Account', 'te-core' ) . '</a></li>';
 	}
-	echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'te-core' ) . '</a></li>';
+		echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'te-core' ) . '</a></li>';
+		if ( te_core_on( 'order_lookup' ) && function_exists( 'wc_get_page_permalink' ) ) {
+			$account = wc_get_page_permalink( 'myaccount' );
+			if ( $account ) {
+				echo '<li><a href="' . esc_url( $account . '#te-track' ) . '">' . esc_html__( 'Track an order', 'te-core' ) . '</a></li>';
+			}
+		}
 	echo '</ul></div>';
 
 	echo '<div class="te-footer__col">';

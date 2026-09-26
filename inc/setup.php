@@ -8,11 +8,85 @@
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'after_setup_theme', 'te_core_setup', 0 );
+add_action( 'init', 'te_core_load_translations', 0 );
 add_action( 'after_switch_theme', 'te_core_activate' );
 add_action( 'widgets_init', 'te_core_widgets' );
 add_filter( 'language_attributes', 'te_core_language_attributes' );
 add_filter( 'body_class', 'te_core_body_class' );
+add_filter( 'load_textdomain_mofile', 'te_core_mofile', 10, 2 );
+add_filter( 'the_content', 'te_core_strip_orphan_shortcodes', 12 );
 add_action( 'init', 'te_core_patterns' );
+
+/**
+ * Bundled translation file for a locale. Persian locales fall back to fa_IR.
+ *
+ * @param string $locale Locale.
+ * @return string Empty when no file exists.
+ */
+function te_core_locale_mofile( $locale ) {
+	$locale = preg_replace( '/[^A-Za-z0-9_]/', '', (string) $locale );
+	$dir    = TE_CORE_DIR . '/languages';
+	$named  = $dir . '/te-core-' . $locale . '.mo';
+	if ( is_readable( $named ) ) {
+		return $named;
+	}
+	$plain = $dir . '/' . $locale . '.mo';
+	if ( is_readable( $plain ) ) {
+		return $plain;
+	}
+	if ( 0 === strpos( $locale, 'fa' ) && is_readable( $dir . '/te-core-fa_IR.mo' ) ) {
+		return $dir . '/te-core-fa_IR.mo';
+	}
+	return '';
+}
+
+/**
+ * Load the bundled catalog. WordPress 6.7 may have stored a no-op already.
+ *
+ * @return void
+ */
+function te_core_load_translations() {
+	global $l10n;
+	if ( isset( $l10n['te-core'] ) && is_object( $l10n['te-core'] ) && 'NOOP_Translations' === get_class( $l10n['te-core'] ) ) {
+		unset( $l10n['te-core'] );
+	}
+	$locale = function_exists( 'determine_locale' ) ? determine_locale() : get_locale();
+	$mofile = te_core_locale_mofile( $locale );
+	if ( '' === $mofile ) {
+		return;
+	}
+	load_textdomain( 'te-core', $mofile, $locale );
+}
+
+/**
+ * Point any later load at the bundled file.
+ *
+ * @param string $mofile Requested file.
+ * @param string $domain Text domain.
+ * @return string
+ */
+function te_core_mofile( $mofile, $domain ) {
+	if ( 'te-core' !== $domain ) {
+		return $mofile;
+	}
+	$custom = te_core_locale_mofile( function_exists( 'determine_locale' ) ? determine_locale() : get_locale() );
+	return '' !== $custom ? $custom : $mofile;
+}
+
+/**
+ * Drop shortcodes left behind by a previous theme. Unknown [blocksy_*] tags
+ * would otherwise print as raw text under the homepage sections.
+ *
+ * @param string $content Post content.
+ * @return string
+ */
+function te_core_strip_orphan_shortcodes( $content ) {
+	if ( ! is_string( $content ) || false === strpos( $content, '[blocksy_' ) ) {
+		return $content;
+	}
+	$clean = preg_replace( '/\[\/?blocksy_[^\]]*\]/', '', $content );
+	return is_string( $clean ) ? $clean : $content;
+}
 
 /**
  * Core theme supports. Textdomain loads first so later strings translate.
@@ -20,7 +94,14 @@ add_action( 'init', 'te_core_patterns' );
  * @return void
  */
 function te_core_setup() {
+	/*
+	 * WordPress 6.7 no longer loads the file passed to load_theme_textdomain().
+	 * Just-in-time loading, for a path inside the theme, looks for languages/{locale}.mo
+	 * rather than languages/{domain}-{locale}.mo. Both names are shipped.
+	 * The init callback below loads the domain file directly if JIT stored a no-op.
+	 */
 	load_theme_textdomain( 'te-core', TE_CORE_DIR . '/languages' );
+	te_core_load_translations();
 
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );

@@ -61,6 +61,7 @@ defined( 'ABSPATH' ) || exit;
 			<div class="te-empty">
 				<h2><?php esc_html_e( 'Nothing matched.', 'te-core' ); ?></h2>
 				<?php get_search_form(); ?>
+				<?php te_core_suggest_products(); ?>
 			</div>
 		<?php endif; ?>
 	</div>

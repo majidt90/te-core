@@ -978,3 +978,295 @@ msgstr "کالا"
 
 msgid "In stock"
 msgstr "موجود"
+
+msgid "Page content under sections"
+msgstr "محتوای برگه زیر بخش‌ها"
+
+msgid "Off by default. Turn on only if the static front page still has copy you want. Leftover shortcodes from another theme are removed either way."
+msgstr "پیش‌فرض خاموش است. فقط اگر برگهٔ اول هنوز متنی دارد که می‌خواهید، روشن کنید. کدهای کوتاهِ مانده از قالب قبلی در هر حال حذف می‌شوند."
+
+msgid "Back to top"
+msgstr "بازگشت به بالا"
+
+msgid "Contact link"
+msgstr "پیوند تماس"
+
+msgid "A Telegram, WhatsApp, or phone link. Leave blank to hide."
+msgstr "پیوند تلگرام، واتساپ یا تلفن. خالی بماند تا پنهان شود."
+
+msgid "Contact label"
+msgstr "برچسب تماس"
+
+msgid "Share a product"
+msgstr "هم‌رسانی کالا"
+
+msgid "Uses the device share sheet, or copies the link."
+msgstr "برگهٔ اشتراک دستگاه را باز می‌کند، یا پیوند را کپی می‌کند."
+
+msgid "SKU on the product"
+msgstr "شناسهٔ کالا روی محصول"
+
+msgid "Shown only when WooCommerce has a SKU. The copy button uses the clipboard."
+msgstr "فقط وقتی ووکامرس شناسه دارد نشان داده می‌شود. دکمهٔ کپی از کلیپ‌بورد استفاده می‌کند."
+
+msgid "Delivery note"
+msgstr "یادداشت ارسال"
+
+msgid "Under the buy button, and as a product tab. Leave blank to hide. Write only what the shop actually does."
+msgstr "زیر دکمهٔ خرید و به‌صورت زبانهٔ کالا. خالی بماند تا پنهان شود. فقط چیزی را بنویسید که فروشگاه واقعاً انجام می‌دهد."
+
+msgid "Catalog view"
+msgstr "نمای کاتالوگ"
+
+msgid "Grid or a quieter list. The choice stays on this device."
+msgstr "شبکه یا فهرستی آرام‌تر. انتخاب روی همین دستگاه می‌ماند."
+
+msgid "Load more"
+msgstr "نمایش بیشتر"
+
+msgid "Appends the next catalog page. Pagination remains when JavaScript is off."
+msgstr "صفحهٔ بعدی کاتالوگ را اضافه می‌کند. اگر جاوااسکریپت خاموش باشد، صفحه‌بندی می‌ماند."
+
+msgid "Minimum order"
+msgstr "حداقل سفارش"
+
+msgid "Cart subtotal after discounts, in store currency. 0 disables the limit. Checkout is blocked until the cart reaches it."
+msgstr "جمع سبد پس از تخفیف، به واحد پول فروشگاه. صفر یعنی بدون محدودیت. تا رسیدن سبد به این مبلغ، تسویه بسته است."
+
+msgid "Restock note"
+msgstr "یادداشت موجود شدن"
+
+msgid "Emails the shop when a visitor asks about an out-of-stock product. The address is not published."
+msgstr "وقتی بازدیدکننده دربارهٔ کالای ناموجود می‌پرسد، به فروشگاه ایمیل می‌شود. نشانی منتشر نمی‌شود."
+
+msgid "Order lookup"
+msgstr "پیگیری سفارش"
+
+msgid "Order number and email, on the account page. Nothing is shown unless both match."
+msgstr "شمارهٔ سفارش و ایمیل، در صفحهٔ حساب. تا وقتی هر دو یکی نباشند چیزی نشان داده نمی‌شود."
+
+msgid "Suggestions when empty"
+msgstr "پیشنهاد وقتی خالی است"
+
+msgid "A few in-stock products on a 404 and an empty search. Not presented as matches."
+msgstr "چند کالای موجود در صفحهٔ ۴۰۴ و جستجوی بی‌نتیجه. به‌عنوان نتیجهٔ جستجو نشان داده نمی‌شوند."
+
+msgid "Recently viewed on the product"
+msgstr "اخیراً دیده‌شده در صفحهٔ کالا"
+
+msgid "Under the product, from this browser. Hidden until another product has been opened."
+msgstr "زیر کالا، از همین مرورگر. تا وقتی کالای دیگری باز نشده پنهان است."
+
+msgid "Cross-sell in the cart"
+msgstr "کالای همراه در سبد"
+
+msgid "The first WooCommerce cross-sell that is not already in the cart. No invented pairings."
+msgstr "اولین کالای همراه ووکامرس که هنوز در سبد نیست. جفت‌سازی ساختگی ندارد."
+
+msgid "Footer widgets"
+msgstr "ابزارک‌های پابرگ"
+
+msgid "Off by default, so a previous theme’s demo widgets do not replace this footer."
+msgstr "پیش‌فرض خاموش است تا ابزارک‌های نمایشی قالب قبلی جای این پابرگ را نگیرند."
+
+msgid "Telegram"
+msgstr "تلگرام"
+
+msgid "Instagram"
+msgstr "اینستاگرام"
+
+msgid "WhatsApp"
+msgstr "واتساپ"
+
+msgid "Questions"
+msgstr "پرسش‌ها"
+
+msgid "Up to four questions. Empty ones are not shown."
+msgstr "تا چهار پرسش. موردهای خالی نشان داده نمی‌شوند."
+
+msgid "Before you ask"
+msgstr "پیش از پرسیدن"
+
+msgid "Question 1"
+msgstr "پرسش ۱"
+
+msgid "Answer 1"
+msgstr "پاسخ ۱"
+
+msgid "Question 2"
+msgstr "پرسش ۲"
+
+msgid "Answer 2"
+msgstr "پاسخ ۲"
+
+msgid "Question 3"
+msgstr "پرسش ۳"
+
+msgid "Answer 3"
+msgstr "پاسخ ۳"
+
+msgid "Question 4"
+msgstr "پرسش ۴"
+
+msgid "Answer 4"
+msgstr "پاسخ ۴"
+
+msgid "Quotes"
+msgstr "نقل‌قول‌ها"
+
+msgid "Written here. Not pulled from product reviews."
+msgstr "همین‌جا نوشته می‌شود. از دیدگاه کالاها گرفته نمی‌شود."
+
+msgid "In their words"
+msgstr "به زبان خودشان"
+
+msgid "Quote 1"
+msgstr "نقل‌قول ۱"
+
+msgid "Name 1"
+msgstr "نام ۱"
+
+msgid "Quote 2"
+msgstr "نقل‌قول ۲"
+
+msgid "Name 2"
+msgstr "نام ۲"
+
+msgid "Quote 3"
+msgstr "نقل‌قول ۳"
+
+msgid "Name 3"
+msgstr "نام ۳"
+
+msgid "Shop note"
+msgstr "یادداشت برای فروشگاه"
+
+msgid "An email to the shop. It is sent, not stored as a list."
+msgstr "ایمیلی به فروشگاه. فرستاده می‌شود و به‌صورت فهرست ذخیره نمی‌شود."
+
+msgid "Write to the shop"
+msgstr "نوشتن به فروشگاه"
+
+msgid "A short note is emailed to the shop. It is not added to a mailing list."
+msgstr "یک یادداشت کوتاه به فروشگاه ایمیل می‌شود. به فهرست پستی اضافه نمی‌شود."
+
+msgid "Send the note"
+msgstr "فرستادن یادداشت"
+
+msgid "SKU"
+msgstr "شناسه"
+
+msgid "Copy"
+msgstr "کپی"
+
+msgid "Share"
+msgstr "هم‌رسانی"
+
+msgid "Ask the shop"
+msgstr "پرسیدن از فروشگاه"
+
+msgid "Grid"
+msgstr "شبکه"
+
+msgid "List"
+msgstr "فهرست"
+
+msgid "Rated 4 and up"
+msgstr "امتیاز ۴ و بالاتر"
+
+msgid "Minimum order is %s."
+msgstr "حداقل سفارش %s است."
+
+msgid "%s more to reach the minimum order."
+msgstr "%s دیگر تا حداقل سفارش مانده است."
+
+msgid "You might also need"
+msgstr "شاید این را هم لازم داشته باشید"
+
+msgid "Try one of these"
+msgstr "یکی از این‌ها را ببینید"
+
+msgid "Your email"
+msgstr "ایمیل شما"
+
+msgid "Leave this field empty"
+msgstr "این فیلد را خالی بگذارید"
+
+msgid "Tell me when it’s back"
+msgstr "وقتی موجود شد خبرم کنید"
+
+msgid "Track an order"
+msgstr "پیگیری سفارش"
+
+msgid "Order number and the email used at checkout. Both have to match."
+msgstr "شمارهٔ سفارش و ایمیلی که هنگام تسویه وارد شده. هر دو باید یکی باشند."
+
+msgid "Order number"
+msgstr "شمارهٔ سفارش"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "Look up"
+msgstr "جستجو"
+
+msgid "We could not find that order."
+msgstr "این سفارش پیدا نشد."
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Placed"
+msgstr "ثبت‌شده"
+
+msgid "Items"
+msgstr "اقلام"
+
+msgid "We’ll email the shop."
+msgstr "به فروشگاه ایمیل می‌زنیم."
+
+msgid "We already have that note."
+msgstr "این یادداشت را از قبل داریم."
+
+msgid "Note sent."
+msgstr "یادداشت فرستاده شد."
+
+msgid "Could not send the note."
+msgstr "یادداشت فرستاده نشد."
+
+msgid "Too many notes. Try again in a minute."
+msgstr "یادداشت‌ها زیاد شد. یک دقیقهٔ دیگر دوباره امتحان کنید."
+
+msgid "This product is available now."
+msgstr "این کالا الان موجود است."
+
+msgid "Note from the shop form — %s"
+msgstr "یادداشت از فرم فروشگاه — %s"
+
+msgid "A visitor asked to be written back at %s. This address was not stored."
+msgstr "بازدیدکننده‌ای خواست به %s پاسخ داده شود. این نشانی ذخیره نشد."
+
+msgid "Restock note — %s"
+msgstr "یادداشت موجود شدن — %s"
+
+msgid "%1$s asked to hear when %2$s is back. %3$s"
+msgstr "%1$s خواست وقتی %2$s موجود شد خبردار شود. %3$s"
+
+msgid "Link copied"
+msgstr "پیوند کپی شد"
+
+msgid "Copied"
+msgstr "کپی شد"
+
+msgid "Theme translations are loaded."
+msgstr "ترجمه‌های قالب بارگذاری شده‌اند."
+
+msgid "Theme translations are not loaded for this locale."
+msgstr "ترجمه‌های قالب برای این زبان بارگذاری نشده‌اند."
+
+msgid "Restock notes"
+msgstr "یادداشت‌های موجود شدن"
+
+msgid "No notes yet."
+msgstr "هنوز یادداشتی نیست."
+

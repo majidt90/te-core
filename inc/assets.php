@@ -11,6 +11,7 @@ add_action( 'wp_enqueue_scripts', 'te_core_enqueue', 20 );
 add_action( 'wp_enqueue_scripts', 'te_core_dequeue', 100 );
 add_action( 'wp_head', 'te_core_preload_font', 2 );
 add_filter( 'woocommerce_get_price_html', 'te_core_filter_price_html', 20 );
+add_filter( 'wc_price', 'te_core_filter_price_html', 20 );
 add_filter( 'gettext', 'te_core_filter_gettext_digits', 20, 3 );
 
 /**
@@ -73,6 +74,9 @@ function te_core_enqueue() {
 				'compareEmpty'  => __( 'Nothing to compare yet.', 'te-core' ),
 				'recent'        => __( 'Recent searches', 'te-core' ),
 				'coupon'        => __( 'Coupon applied', 'te-core' ),
+				'copied'        => __( 'Link copied', 'te-core' ),
+				'skuCopied'     => __( 'Copied', 'te-core' ),
+				'loadingMore'   => __( 'Loading', 'te-core' ),
 			),
 			'features'      => array(
 				'predictive'   => te_core_on( 'show_search' ) && te_core_on( 'predictive_search' ),
@@ -169,7 +173,7 @@ function te_core_filter_price_html( $html ) {
 	if ( is_admin() && ! wp_doing_ajax() ) {
 		return $html;
 	}
-	return te_core_digits( $html );
+	return te_core_decode_marks( te_core_digits( $html ) );
 }
 
 /**

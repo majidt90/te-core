@@ -36,7 +36,20 @@
 	color: var(--te-ink-soft);
 }
 .te-filter__list a[aria-current="page"],
+.te-filter__list a[aria-current="true"],
 .te-filter__list a:hover { color: var(--te-ink); }
+
+.quantity > label {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
 
 .te-filter__price { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .te-filter input[type="number"],
@@ -481,6 +494,54 @@ body:not(.single-product).te-shop-width-full .te-shop > .te-container {
 	color: var(--te-accent);
 	font-size: 12px;
 	font-weight: 650;
+}
+
+.te-sku, .te-share {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 8px;
+	color: var(--te-muted);
+	font-size: 13px;
+}
+.te-sku code { font-family: inherit; font-size: inherit; }
+.te-sku button, .te-share button {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	border: 0;
+	background: transparent;
+	color: inherit;
+	padding: 0;
+	text-decoration: underline;
+	text-underline-offset: 0.18em;
+}
+.te-sku .te-icon, .te-share .te-icon { width: 16px; height: 16px; }
+.te-ask { margin: 8px 0 0; }
+
+.te-min { margin: 0 0 10px; color: var(--te-accent); font-size: 13px; }
+.te-cross {
+	display: grid;
+	grid-template-columns: 64px minmax(0, 1fr) auto;
+	gap: 10px;
+	align-items: center;
+	padding: 12px 0;
+	border-top: 1px solid var(--te-line);
+}
+.te-cross img { width: 64px; height: 64px; object-fit: contain; border-radius: 8px; background: var(--te-well); }
+.te-cross .te-kicker { margin: 0; }
+.te-cross a { text-decoration: none; }
+.te-product-recent { margin-top: 36px; }
+.te-product-recent h2 { margin-bottom: 14px; }
+
+html.te-view-list .te-catalog__main ul.products { grid-template-columns: 1fr !important; }
+html.te-view-list .te-catalog__main .te-card {
+	display: grid;
+	grid-template-columns: 148px minmax(0, 1fr);
+}
+html.te-view-list .te-catalog__main .te-card__media { aspect-ratio: 1; height: 100%; }
+@media (max-width: 640px) {
+	html.te-view-list .te-catalog__main .te-card { grid-template-columns: 108px minmax(0, 1fr); }
 }
 
 .te-active { margin: 0 0 12px; }

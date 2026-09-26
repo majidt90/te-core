@@ -67,6 +67,7 @@ $count    = te_core_cart_count();
 		<?php endif; ?>
 
 		<div class="te-tools">
+			<?php te_core_header_contact(); ?>
 			<?php if ( te_core_on( 'show_account' ) ) : ?>
 				<a class="te-iconbtn" href="<?php echo esc_url( te_core_account_url() ); ?>">
 					<?php te_core_icon( 'user' ); ?>
@@ -156,6 +157,7 @@ function te_core_department_chips() {
 			'parent'     => 0,
 			'number'     => 20,
 			'orderby'    => 'menu_order',
+			'exclude'    => te_core_hidden_term_ids(),
 		)
 	);
 	if ( ! $terms || is_wp_error( $terms ) ) {

@@ -297,7 +297,7 @@ function te_core_rest_search( $request ) {
 				'id'    => $product->get_id(),
 				'name'  => $product->get_name(),
 				'url'   => $product->get_permalink(),
-				'price' => wp_strip_all_tags( $product->get_price_html() ),
+				'price' => te_core_price_text( $product->get_price_html() ),
 				'image' => $image ? $image : '',
 			);
 		}
@@ -308,6 +308,7 @@ function te_core_rest_search( $request ) {
 				'hide_empty' => true,
 				'name__like' => $q,
 				'number'     => 3,
+				'exclude'    => te_core_hidden_term_ids(),
 			)
 		);
 		if ( $cats && ! is_wp_error( $cats ) ) {
