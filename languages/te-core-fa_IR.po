@@ -1,0 +1,1387 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TE Core 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-26 00:00+0000\n"
+"PO-Revision-Date: 2026-09-26 00:00+0000\n"
+"Last-Translator: TE Core\n"
+"Language-Team: Persian\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Skip to content"
+msgstr "پرش به محتوا"
+
+msgid "Pages:"
+msgstr "برگه‌ها:"
+
+msgid "This page is not in the catalog."
+msgstr "این صفحه در کاتالوگ نیست."
+
+msgid "Search, or go back to the front."
+msgstr "جستجو کنید، یا به صفحهٔ اول برگردید."
+
+msgid "Back home"
+msgstr "بازگشت به خانه"
+
+msgid "Search"
+msgstr "جستجو"
+
+msgid "%s comment"
+msgstr "%s دیدگاه"
+
+msgid "%s comments"
+msgstr "%s دیدگاه"
+
+msgid "The page expired. Reload and try again."
+msgstr "صفحه منقضی شده. دوباره بارگذاری کنید."
+
+msgid "Cart is not available."
+msgstr "سبد در دسترس نیست."
+
+msgid "Product not found."
+msgstr "کالا پیدا نشد."
+
+msgid "This product cannot be added right now."
+msgstr "این کالا الان قابل افزودن نیست."
+
+msgid "Could not add this product."
+msgstr "کالا به سبد اضافه نشد."
+
+msgid "That item is no longer in the cart."
+msgstr "این مورد دیگر در سبد نیست."
+
+msgid "General"
+msgstr "عمومی"
+
+msgid "Header"
+msgstr "سربرگ"
+
+msgid "Homepage"
+msgstr "صفحهٔ اصلی"
+
+msgid "Shop"
+msgstr "فروشگاه"
+
+msgid "Performance"
+msgstr "عملکرد"
+
+msgid "Footer"
+msgstr "پاورقی"
+
+msgid "Text direction"
+msgstr "جهت متن"
+
+msgid "Automatic follows the site language. Force a direction only when the locale and the layout must differ."
+msgstr "حالت خودکار از زبان سایت پیروی می‌کند. جهت را فقط وقتی اجبار کنید که زبان و چیدمان باید فرق داشته باشند."
+
+msgid "Automatic (site language)"
+msgstr "خودکار (زبان سایت)"
+
+msgid "Right to left"
+msgstr "راست به چپ"
+
+msgid "Left to right"
+msgstr "چپ به راست"
+
+msgid "Persian digits"
+msgstr "ارقام فارسی"
+
+msgid "Applied to prices, counts, and storefront text. Checkout inputs stay easy to type."
+msgstr "روی قیمت، تعداد و متن ویترین اعمال می‌شود. فیلدهای پرداخت برای تایپ ساده می‌مانند."
+
+msgid "Automatic (Persian locales)"
+msgstr "خودکار (زبان‌های فارسی)"
+
+msgid "On"
+msgstr "روشن"
+
+msgid "Off"
+msgstr "خاموش"
+
+msgid "Accent"
+msgstr "رنگ تأکید"
+
+msgid "Used for price signals, the cart count, and focus. Buttons stay ink so the accent stays rare."
+msgstr "برای قیمت، شمارندهٔ سبد و فوکوس. دکمه‌ها تیره می‌مانند تا این رنگ کم‌مصرف بماند."
+
+msgid "Content width"
+msgstr "عرض محتوا"
+
+msgid "Pixels. The catalog, header, and footer share this measure."
+msgstr "پیکسل. کاتالوگ، سربرگ و پاورقی همین اندازه را دارند."
+
+msgid "Sticky header"
+msgstr "سربرگ چسبان"
+
+msgid "Mobile dock"
+msgstr "نوار پایین موبایل"
+
+msgid "Home, search, cart, and account within thumb reach. Hidden on larger screens."
+msgstr "خانه، جستجو، سبد و حساب در دسترس انگشت. در صفحه‌های بزرگ پنهان است."
+
+msgid "Announcement bar"
+msgstr "نوار اطلاعیه"
+
+msgid "Announcement"
+msgstr "اطلاعیه"
+
+msgid "Announcement link"
+msgstr "پیوند اطلاعیه"
+
+msgid "Announcement can be dismissed"
+msgstr "اطلاعیه قابل بستن باشد"
+
+msgid "Dismissed for the browser session, so a later visit can still see it."
+msgstr "فقط تا پایان نشست مرورگر بسته می‌شود تا بازدید بعدی هنوز آن را ببیند."
+
+msgid "Predictive search"
+msgstr "جستجوی پیشنهادی"
+
+msgid "A short, debounced list. The form still submits without JavaScript."
+msgstr "فهرست کوتاه و با تأخیر کوتاه. بدون جاوااسکریپت هم فرم ارسال می‌شود."
+
+msgid "Search placeholder"
+msgstr "متن راهنمای جستجو"
+
+msgid "Leave blank for the translated default."
+msgstr "برای متن پیش‌فرض ترجمه‌شده خالی بگذارید."
+
+msgid "Account link"
+msgstr "پیوند حساب"
+
+msgid "Wishlist"
+msgstr "علاقه‌مندی"
+
+msgid "Stored in the browser. No extra database table."
+msgstr "در مرورگر ذخیره می‌شود. جدول اضافه در پایگاه داده ندارد."
+
+msgid "Department row"
+msgstr "ردیف بخش‌ها"
+
+msgid "Department source"
+msgstr "منبع بخش‌ها"
+
+msgid "Product categories"
+msgstr "دسته‌های کالا"
+
+msgid "Header menu"
+msgstr "فهرست سربرگ"
+
+msgid "Category panel"
+msgstr "پنل دسته‌ها"
+
+msgid "A precise stand-in for a mega menu: top-level departments and their children, opened on demand."
+msgstr "جایگزین دقیق مگامنو: بخش‌های اصلی و زیردسته‌ها، فقط وقتی باز شود."
+
+msgid "Columns on desktop"
+msgstr "ستون‌ها در دسکتاپ"
+
+msgid "Products per page"
+msgstr "کالا در هر صفحه"
+
+msgid "Image ratio"
+msgstr "نسبت تصویر"
+
+msgid "Square (1:1)"
+msgstr "مربع (۱:۱)"
+
+msgid "Portrait (4:5)"
+msgstr "عمودی (۴:۵)"
+
+msgid "Tall (3:4)"
+msgstr "بلند (۳:۴)"
+
+msgid "Image fit"
+msgstr "جا شدن تصویر"
+
+msgid "Contain keeps the whole product visible. Cover fills the frame."
+msgstr "Contain کل کالا را نشان می‌دهد. Cover قاب را پر می‌کند."
+
+msgid "Contain"
+msgstr "کامل در قاب"
+
+msgid "Cover"
+msgstr "پر کردن قاب"
+
+msgid "Ratings on cards"
+msgstr "امتیاز روی کارت"
+
+msgid "Category on cards"
+msgstr "دسته روی کارت"
+
+msgid "Sale badge"
+msgstr "نشان حراج"
+
+msgid "Discount percent"
+msgstr "درصد تخفیف"
+
+msgid "Text only"
+msgstr "فقط متن"
+
+msgid "Quick view"
+msgstr "نمای سریع"
+
+msgid "Add to cart without reload"
+msgstr "افزودن به سبد بدون بارگذاری مجدد"
+
+msgid "Simple products only. Variable products open the product page so options stay accurate."
+msgstr "فقط کالاهای ساده. کالای متغیر به صفحهٔ کالا می‌رود تا گزینه‌ها دقیق بمانند."
+
+msgid "Catalog filters"
+msgstr "فیلتر کاتالوگ"
+
+msgid "Sticky buy box"
+msgstr "جعبهٔ خرید چسبان"
+
+msgid "Product image lightbox"
+msgstr "نمایش بزرگ تصویر کالا"
+
+msgid "Motion"
+msgstr "حرکت"
+
+msgid "Transform and opacity only. The visitor’s reduced-motion setting always wins."
+msgstr "فقط تبدیل و شفافیت. تنظیم کاهش حرکت بازدیدکننده همیشه مقدم است."
+
+msgid "Preload the typeface"
+msgstr "پیش‌بارگذاری قلم"
+
+msgid "Skip rendering of far sections"
+msgstr "رد کردن رسم بخش‌های دور"
+
+msgid "Uses content-visibility so below-the-fold sections do not block the first paint."
+msgstr "با content-visibility بخش‌های پایین صفحه رسم اول را معطل نمی‌کنند."
+
+msgid "WooCommerce cart fragments"
+msgstr "قطعه‌های سبد ووکامرس"
+
+msgid "Off by default. Fragments add a request to every page and hurt interaction speed. Turn on only if another plugin requires them."
+msgstr "پیش‌فرض خاموش است. این قطعه‌ها به هر صفحه یک درخواست اضافه می‌کنند و سرعت تعامل را کم می‌کنند. فقط اگر افزونهٔ دیگری لازم دارد روشن کنید."
+
+msgid "Remove emoji scripts"
+msgstr "حذف اسکریپت ایموجی"
+
+msgid "Footer note"
+msgstr "یادداشت پاورقی"
+
+msgid "Shown next to the copyright. Leave blank to hide."
+msgstr "کنار حق نشر نشان داده می‌شود. برای پنهان کردن خالی بگذارید."
+
+msgid "Payment note"
+msgstr "یادداشت پرداخت"
+
+msgid "A plain sentence, not card logos. Example: Secure payment via your store gateway."
+msgstr "یک جملهٔ ساده، نه لوگوی کارت. مثال: پرداخت امن از درگاه فروشگاه."
+
+msgid "Delivery"
+msgstr "ارسال"
+
+msgid "Returns"
+msgstr "بازگشت"
+
+msgid "Security"
+msgstr "امنیت"
+
+msgid "Support"
+msgstr "پشتیبانی"
+
+msgid "Quality"
+msgstr "کیفیت"
+
+msgid "Check"
+msgstr "تأیید"
+
+msgid "Hero"
+msgstr "سرصفحه"
+
+msgid "One message, one action. No rotating slider."
+msgstr "یک پیام، یک عمل. بدون اسلایدر چرخان."
+
+msgid "Eyebrow"
+msgstr "برچسب کوچک"
+
+msgid "The mixed market"
+msgstr "بازار میکس"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "A quieter way to find everything."
+msgstr "راهی آرام‌تر برای پیدا کردن همه‌چیز."
+
+msgid "Text"
+msgstr "متن"
+
+msgid "One precise catalog for home, style, electronics, and the things you did not know you needed."
+msgstr "یک کاتالوگ دقیق برای خانه، پوشش، الکترونیک، و چیزهایی که نمی‌دانستید لازم دارید."
+
+msgid "Primary button"
+msgstr "دکمهٔ اصلی"
+
+msgid "Browse the catalog"
+msgstr "دیدن کاتالوگ"
+
+msgid "Primary link"
+msgstr "پیوند اصلی"
+
+msgid "Secondary button"
+msgstr "دکمهٔ دوم"
+
+msgid "Today’s deals"
+msgstr "پیشنهادهای امروز"
+
+msgid "Secondary link"
+msgstr "پیوند دوم"
+
+msgid "Image"
+msgstr "تصویر"
+
+msgid "Alignment"
+msgstr "چینش"
+
+msgid "Start"
+msgstr "ابتدا"
+
+msgid "Center"
+msgstr "وسط"
+
+msgid "Departments"
+msgstr "بخش‌ها"
+
+msgid "Top-level product categories, with a monogram if no image is set."
+msgstr "دسته‌های اصلی کالا. اگر تصویر نباشد، حرف اول نام نشان داده می‌شود."
+
+msgid "Shop by department"
+msgstr "خرید بر اساس بخش"
+
+msgid "How many"
+msgstr "تعداد"
+
+msgid "Product rail"
+msgstr "ردیف کالا"
+
+msgid "A grid from one accurate source: featured, sale, newest, best selling, top rated, or a category."
+msgstr "شبکه‌ای از یک منبع دقیق: ویژه، حراج، تازه‌ها، پرفروش، برتر، یا یک دسته."
+
+msgid "Source"
+msgstr "منبع"
+
+msgid "Featured"
+msgstr "ویژه"
+
+msgid "On sale"
+msgstr "حراج"
+
+msgid "Newest"
+msgstr "تازه‌ها"
+
+msgid "Best selling"
+msgstr "پرفروش"
+
+msgid "Top rated"
+msgstr "بالاترین امتیاز"
+
+msgid "One category"
+msgstr "یک دسته"
+
+msgid "Category"
+msgstr "دسته"
+
+msgid "Link label"
+msgstr "برچسب پیوند"
+
+msgid "View all"
+msgstr "دیدن همه"
+
+msgid "Reassurance"
+msgstr "اطمینان"
+
+msgid "Four short promises. Write only what the store actually does."
+msgstr "چهار قول کوتاه. فقط چیزی بنویسید که فروشگاه واقعاً انجام می‌دهد."
+
+msgid "Split promo"
+msgstr "معرفی دونیمه"
+
+msgid "Image and a short argument, side by side."
+msgstr "تصویر و یک استدلال کوتاه، کنار هم."
+
+msgid "A note"
+msgstr "یک یادداشت"
+
+msgid "Chosen, not dumped."
+msgstr "انتخاب‌شده، نه انباشته."
+
+msgid "A mixed store only works when finding is faster than scrolling."
+msgstr "فروشگاه میکس فقط وقتی کار می‌کند که پیدا کردن از اسکرول سریع‌تر باشد."
+
+msgid "Button"
+msgstr "دکمه"
+
+msgid "Read the story"
+msgstr "خواندن داستان"
+
+msgid "Link"
+msgstr "پیوند"
+
+msgid "Place the image at the end"
+msgstr "تصویر در انتها باشد"
+
+msgid "Promo tiles"
+msgstr "کاشی‌های معرفی"
+
+msgid "Up to three quiet tiles. Empty tiles are not rendered."
+msgstr "تا سه کاشی آرام. کاشی خالی نمایش داده نمی‌شود."
+
+msgid "Editorial"
+msgstr "یادداشت"
+
+msgid "A narrow text block. For long stories, use a page."
+msgstr "یک بلوک متن باریک. برای داستان بلند از برگه استفاده کنید."
+
+msgid "From the shop"
+msgstr "از فروشگاه"
+
+msgid "Why this catalog is mixed"
+msgstr "چرا این کاتالوگ میکس است"
+
+msgid "Departments stay clear, prices stay exact, and every product page answers the same questions in the same place."
+msgstr "بخش‌ها روشن می‌مانند، قیمت‌ها دقیق می‌مانند، و هر صفحهٔ کالا همان سؤال‌ها را در همان جا جواب می‌دهد."
+
+msgid "Names"
+msgstr "نام‌ها"
+
+msgid "A quiet row of names. One per line. No logo carousel."
+msgstr "یک ردیف آرام از نام‌ها. هر خط یک نام. بدون کاروسل لوگو."
+
+msgid "In the catalog"
+msgstr "در کاتالوگ"
+
+msgid "Journal"
+msgstr "یادداشت‌ها"
+
+msgid "Latest posts. Hidden when the blog is empty."
+msgstr "آخرین نوشته‌ها. اگر وبلاگ خالی باشد پنهان است."
+
+msgid "Notes from the shop"
+msgstr "یادداشت‌های فروشگاه"
+
+msgid "Recently viewed"
+msgstr "اخیراً دیده‌شده"
+
+msgid "Filled from this browser after a product is opened. Hidden until then."
+msgstr "بعد از باز شدن یک کالا در همین مرورگر پر می‌شود. تا آن وقت پنهان است."
+
+msgid "Continue"
+msgstr "ادامه"
+
+msgid "Clear delivery"
+msgstr "ارسال روشن"
+
+msgid "Shipping choices are shown before you pay."
+msgstr "گزینه‌های ارسال پیش از پرداخت نشان داده می‌شوند."
+
+msgid "Straightforward returns"
+msgstr "بازگشت سرراست"
+
+msgid "A defined window. No maze of small print."
+msgstr "یک بازهٔ مشخص. بدون هزارتوی ریزنوشته."
+
+msgid "Secure checkout"
+msgstr "پرداخت امن"
+
+msgid "Payment stays with WooCommerce and your gateway."
+msgstr "پرداخت نزد ووکامرس و درگاه شما می‌ماند."
+
+msgid "A person answers"
+msgstr "یک نفر جواب می‌دهد"
+
+msgid "Questions go to support, not a dead end."
+msgstr "سؤال‌ها به پشتیبانی می‌رسند، نه به بن‌بست."
+
+msgid "Section title"
+msgstr "عنوان بخش"
+
+msgid "Show item %d"
+msgstr "نمایش مورد %d"
+
+msgid "Icon"
+msgstr "آیکون"
+
+msgid "New in"
+msgstr "تازه‌ها"
+
+msgid "Just added to the catalog."
+msgstr "تازه به کاتالوگ اضافه شده."
+
+msgid "Home"
+msgstr "خانه"
+
+msgid "Things meant to stay."
+msgstr "چیزهایی که می‌مانند."
+
+msgid "Deals"
+msgstr "پیشنهادها"
+
+msgid "Reduced, still exact."
+msgstr "کاهش‌یافته، هنوز دقیق."
+
+msgid "Show tile %d"
+msgstr "نمایش کاشی %d"
+
+msgid "Legal"
+msgstr "قانونی"
+
+msgid "Shop filters"
+msgstr "فیلتر فروشگاه"
+
+msgid "Footer 1"
+msgstr "پاورقی ۱"
+
+msgid "Footer 2"
+msgstr "پاورقی ۲"
+
+msgid "Footer 3"
+msgstr "پاورقی ۳"
+
+msgid "TE Core"
+msgstr "تی‌کور"
+
+msgid "Added to cart"
+msgstr "به سبد اضافه شد"
+
+msgid "Could not update the cart."
+msgstr "سبد به‌روز نشد."
+
+msgid "Nothing matched."
+msgstr "چیزی پیدا نشد."
+
+msgid "Search results"
+msgstr "نتایج جستجو"
+
+msgid "View all results"
+msgstr "دیدن همهٔ نتایج"
+
+msgid "Loading"
+msgstr "در حال بارگذاری"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "Removed"
+msgstr "حذف شد"
+
+msgid "Out of stock"
+msgstr "ناموجود"
+
+msgid "Save"
+msgstr "ذخیره"
+
+msgid "Sale"
+msgstr "حراج"
+
+msgid "−%s%%"
+msgstr "−%s٪"
+
+msgid "Filter"
+msgstr "فیلتر"
+
+msgid "Close filters"
+msgstr "بستن فیلترها"
+
+msgid "Department"
+msgstr "بخش"
+
+msgid "All products"
+msgstr "همهٔ کالاها"
+
+msgid "Price"
+msgstr "قیمت"
+
+msgid "Minimum price"
+msgstr "حداقل قیمت"
+
+msgid "Min"
+msgstr "از"
+
+msgid "Maximum price"
+msgstr "حداکثر قیمت"
+
+msgid "Max"
+msgstr "تا"
+
+msgid "In stock only"
+msgstr "فقط موجود"
+
+msgid "Apply"
+msgstr "اعمال"
+
+msgid "Search products and departments"
+msgstr "جستجوی کالا و بخش"
+
+msgid "Products"
+msgstr "کالاها"
+
+msgid "Prices confirmed at checkout"
+msgstr "قیمت در پرداخت قطعی می‌شود"
+
+msgid "Breadcrumb"
+msgstr "مسیر"
+
+msgid "Shipping and payment are confirmed at checkout."
+msgstr "ارسال و پرداخت در مرحلهٔ تسویه قطعی می‌شود."
+
+msgid "Catalog"
+msgstr "کاتالوگ"
+
+msgid "Nothing in this view."
+msgstr "در این نما چیزی نیست."
+
+msgid "Clear a filter, or search the whole catalog."
+msgstr "یک فیلتر را بردارید، یا کل کاتالوگ را بگردید."
+
+msgid "Remove this section?"
+msgstr "این بخش حذف شود؟"
+
+msgid "Restore the default homepage sections?"
+msgstr "بخش‌های پیش‌فرض صفحهٔ اصلی برگردند؟"
+
+msgid "Choose an image"
+msgstr "انتخاب تصویر"
+
+msgid "Use this image"
+msgstr "استفاده از این تصویر"
+
+msgid "Core"
+msgstr "هسته"
+
+msgid "TE Core has one registry. These fields and the storefront read the same definitions. A control that is off is not printed, and its script is not loaded."
+msgstr "تی‌کور یک رجیستری دارد. این فیلدها و ویترین همان تعریف‌ها را می‌خوانند. کنترلی که خاموش باشد چاپ نمی‌شود و اسکریپتش بار نمی‌شود."
+
+msgid "Add, remove, and drag sections. The order on this screen is the order on the front page. Disabled sections stay saved but are not rendered. Empty product rails are skipped so the page never shows a false heading."
+msgstr "بخش اضافه کنید، حذف کنید و بکشید. ترتیب این صفحه، ترتیب صفحهٔ اول است. بخش غیرفعال ذخیره می‌ماند ولی نمایش داده نمی‌شود. ردیف کالای خالی رد می‌شود تا عنوان دروغین دیده نشود."
+
+msgid "For more information:"
+msgstr "اطلاعات بیشتر:"
+
+msgid "Themes"
+msgstr "پوسته‌ها"
+
+msgid "TE Core is active. Set the catalog, direction, and homepage sections from its settings screen."
+msgstr "تی‌کور فعال است. کاتالوگ، جهت و بخش‌های صفحهٔ اصلی را از صفحهٔ تنظیماتش مشخص کنید."
+
+msgid "Open TE Core settings"
+msgstr "باز کردن تنظیمات تی‌کور"
+
+msgid "Sorry, you are not allowed to do that."
+msgstr "اجازهٔ این کار را ندارید."
+
+msgid "What you set here is what the storefront renders. Shell, catalog, and homepage sections share one core."
+msgstr "هرچه اینجا تنظیم شود همان است که ویترین نشان می‌دهد. پوسته، کاتالوگ و بخش‌های صفحهٔ اصلی یک هسته دارند."
+
+msgid "Homepage sections restored."
+msgstr "بخش‌های صفحهٔ اصلی بازگردانده شد."
+
+msgid "TE Core settings"
+msgstr "تنظیمات تی‌کور"
+
+msgid "Core status"
+msgstr "وضعیت هسته"
+
+msgid "WooCommerce is active."
+msgstr "ووکامرس فعال است."
+
+msgid "WooCommerce is not active. The shell still loads; catalog sections stay hidden."
+msgstr "ووکامرس فعال نیست. پوسته باز هم بار می‌شود؛ بخش‌های کاتالوگ پنهان می‌مانند."
+
+msgid "Locale %1$s, direction %2$s."
+msgstr "زبان %1$s، جهت %2$s."
+
+msgid "%1$d homepage sections active, %2$d saved."
+msgstr "%1$d بخش صفحهٔ اصلی فعال، %2$d ذخیره‌شده."
+
+msgid "Enabled"
+msgstr "فعال"
+
+msgid "Select image"
+msgstr "انتخاب تصویر"
+
+msgid "Remove"
+msgstr "حذف"
+
+msgid "WooCommerce categories appear here after WooCommerce is active."
+msgstr "دسته‌های ووکامرس بعد از فعال شدن ووکامرس اینجا دیده می‌شوند."
+
+msgid "Select a category"
+msgstr "یک دسته انتخاب کنید"
+
+msgid "Add a section"
+msgstr "افزودن بخش"
+
+msgid "Section type"
+msgstr "نوع بخش"
+
+msgid "Add section"
+msgstr "افزودن بخش"
+
+msgid "Drag the handle to reorder. Uncheck Enabled to keep a section without showing it."
+msgstr "برای جابه‌جایی دسته را بکشید. فعال را بردارید تا بخش بماند ولی دیده نشود."
+
+msgid "Save sections"
+msgstr "ذخیرهٔ بخش‌ها"
+
+msgid "Restore default sections"
+msgstr "بازگردانی بخش‌های پیش‌فرض"
+
+msgid "Toggle section"
+msgstr "باز و بسته کردن بخش"
+
+msgid "Remove section"
+msgstr "حذف بخش"
+
+msgid "Dismiss announcement"
+msgstr "بستن اطلاعیه"
+
+msgid "Account"
+msgstr "حساب"
+
+msgid "Sign in"
+msgstr "ورود"
+
+msgid "Saved"
+msgstr "ذخیره‌شده"
+
+msgid "Cart"
+msgstr "سبد"
+
+msgid "© %1$s %2$s"
+msgstr "© %1$s %2$s"
+
+msgid "Mobile"
+msgstr "موبایل"
+
+msgid "Pages"
+msgstr "برگه‌ها"
+
+msgid "%s item"
+msgstr "%s کالا"
+
+msgid "%s items"
+msgstr "%s کالا"
+
+msgid "Selected for you"
+msgstr "انتخاب‌شده برای شما"
+
+msgid "New in the catalog"
+msgstr "تازه در کاتالوگ"
+
+msgid "From the department"
+msgstr "از این بخش"
+
+msgid "All notes"
+msgstr "همهٔ یادداشت‌ها"
+
+msgid "Nothing saved yet."
+msgstr "هنوز چیزی ذخیره نشده."
+
+msgid "No departments yet."
+msgstr "هنوز بخشی نیست."
+
+msgid "View options"
+msgstr "دیدن گزینه‌ها"
+
+msgid "Full details"
+msgstr "جزئیات کامل"
+
+msgid "Your cart is empty."
+msgstr "سبد شما خالی است."
+
+msgid "Decrease quantity"
+msgstr "کاهش تعداد"
+
+msgid "Increase quantity"
+msgstr "افزایش تعداد"
+
+msgid "Subtotal"
+msgstr "جمع جزء"
+
+msgid "View cart"
+msgstr "دیدن سبد"
+
+msgid "Checkout"
+msgstr "تسویه"
+
+msgid "Results for “%s”"
+msgstr "نتایج «%s»"
+
+msgid "Previous"
+msgstr "قبلی"
+
+msgid "Next"
+msgstr "بعدی"
+
+msgid "A mixed catalog only works when finding is faster than scrolling. Write the promise you can keep."
+msgstr "کاتالوگ میکس فقط وقتی کار می‌کند که پیدا کردن از اسکرول سریع‌تر باشد. قولی بنویسید که می‌توانید نگه دارید."
+
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] "%s دیدگاه"
+msgstr[1] "%s دیدگاه"
+
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] "%s کالا"
+msgstr[1] "%s کالا"
+
+msgid "Catalog width"
+msgstr "عرض کاتالوگ"
+
+msgid "Full width runs the shop edge to edge. Wide keeps a little air on large screens."
+msgstr "تمام‌عرض کاتالوگ را تا لبه می‌برد. عریض در صفحه‌های بزرگ کمی فاصله نگه می‌دارد."
+
+msgid "Contained"
+msgstr "محدود"
+
+msgid "Wide"
+msgstr "عریض"
+
+msgid "Full width"
+msgstr "تمام‌عرض"
+
+msgid "Low stock signal"
+msgstr "نشانهٔ موجودی کم"
+
+msgid "Shown only when WooCommerce is tracking stock and the quantity is at or below the limit. No invented scarcity."
+msgstr "فقط وقتی ووکامرس موجودی را می‌شمارد و تعداد به حد رسیده باشد. کمبود ساختگی نشان داده نمی‌شود."
+
+msgid "Low stock at"
+msgstr "موجودی کم از"
+
+msgid "Second image on hover"
+msgstr "تصویر دوم با هاور"
+
+msgid "The next gallery image, lazy-loaded, and only for a fine pointer. Touch screens stay on the first image."
+msgstr "تصویر بعدی گالری، با بارگذاری تنبل، و فقط برای اشاره‌گر دقیق. صفحهٔ لمسی روی تصویر اول می‌ماند."
+
+msgid "Compare"
+msgstr "مقایسه"
+
+msgid "Up to four products, stored in this browser. The table is rendered by the server so prices stay exact."
+msgstr "تا چهار کالا، در همین مرورگر. جدول را سرور می‌سازد تا قیمت دقیق بماند."
+
+msgid "Sticky buy bar"
+msgstr "نوار خرید چسبان"
+
+msgid "A compact bar on small screens after the buy box scrolls away. Variable products scroll back to the options."
+msgstr "نوار جمع‌وجور در صفحه‌های کوچک، بعد از رد شدن جعبهٔ خرید. کالای متغیر به گزینه‌ها برمی‌گردد."
+
+msgid "Key specs"
+msgstr "مشخصات کلیدی"
+
+msgid "The first four visible attributes, in the buy box. Hidden when a product has none."
+msgstr "چهار ویژگی نمایان اول، در جعبهٔ خرید. اگر کالا ویژگی نداشته باشد پنهان است."
+
+msgid "Free-shipping threshold"
+msgstr "آستانهٔ ارسال رایگان"
+
+msgid "Cart subtotal after discounts and before shipping, in store currency. 0 hides the meter. Set this only if that promise is true."
+msgstr "جمع سبد بعد از تخفیف و پیش از ارسال، به واحد پول فروشگاه. صفر یعنی پنهان. فقط اگر این قول درست است تنظیم کنید."
+
+msgid "Coupon in the cart drawer"
+msgstr "کوپن در کشوی سبد"
+
+msgid "Applies through WooCommerce, so invalid codes fail honestly."
+msgstr "از خود ووکامرس اعمال می‌شود، پس کد نامعتبر صادقانه رد می‌شود."
+
+msgid "Recent searches"
+msgstr "جستجوهای اخیر"
+
+msgid "The last few queries on this device. No network request until a search actually runs."
+msgstr "چند جستجوی آخر روی همین دستگاه. تا وقتی جستجو اجرا نشود درخواستی نمی‌رود."
+
+msgid "Width"
+msgstr "عرض"
+
+msgid "Full width paints the band edge to edge. Copy stays measured."
+msgstr "تمام‌عرض نوار را تا لبه رنگ می‌کند. متن اندازه‌دار می‌ماند."
+
+msgid "Compare holds four products."
+msgstr "مقایسه چهار کالا نگه می‌دارد."
+
+msgid "Added to compare"
+msgstr "به مقایسه اضافه شد"
+
+msgid "Nothing to compare yet."
+msgstr "هنوز چیزی برای مقایسه نیست."
+
+msgid "Coupon applied"
+msgstr "کد تخفیف اعمال شد"
+
+msgid "Only %s left"
+msgstr "فقط %s عدد مانده"
+
+msgid "Min %s"
+msgstr "حداقل %s"
+
+msgid "Max %s"
+msgstr "حداکثر %s"
+
+msgid "Rated %s"
+msgstr "امتیاز %s"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+msgid "Active filters"
+msgstr "فیلترهای فعال"
+
+msgid "Clear all"
+msgstr "پاک کردن همه"
+
+msgid "Free shipping unlocked"
+msgstr "ارسال رایگان فعال شد"
+
+msgid "%s more for free shipping"
+msgstr "%s دیگر تا ارسال رایگان"
+
+msgid "Free shipping"
+msgstr "ارسال رایگان"
+
+msgid "Remove from compare"
+msgstr "حذف از مقایسه"
+
+msgid "Stock"
+msgstr "موجودی"
+
+msgid "%s in stock"
+msgstr "%s عدد موجود"
+
+msgid "Choose options"
+msgstr "انتخاب گزینه‌ها"
+
+msgid "Coupon code"
+msgstr "کد تخفیف"
+
+msgid "Enter a coupon code."
+msgstr "کد تخفیف را وارد کنید."
+
+msgid "Coupon was not applied."
+msgstr "کد تخفیف اعمال نشد."
+
+msgid "Discount"
+msgstr "تخفیف"
+
+msgid "Product"
+msgstr "کالا"
+
+msgid "In stock"
+msgstr "موجود"
+
+msgid "Page content under sections"
+msgstr "محتوای برگه زیر بخش‌ها"
+
+msgid "Off by default. Turn on only if the static front page still has copy you want. Leftover shortcodes from another theme are removed either way."
+msgstr "پیش‌فرض خاموش است. فقط اگر برگهٔ اول هنوز متنی دارد که می‌خواهید، روشن کنید. کدهای کوتاهِ مانده از قالب قبلی در هر حال حذف می‌شوند."
+
+msgid "Back to top"
+msgstr "بازگشت به بالا"
+
+msgid "Contact link"
+msgstr "پیوند تماس"
+
+msgid "A Telegram, WhatsApp, or phone link. Leave blank to hide."
+msgstr "پیوند تلگرام، واتساپ یا تلفن. خالی بماند تا پنهان شود."
+
+msgid "Contact label"
+msgstr "برچسب تماس"
+
+msgid "Share a product"
+msgstr "هم‌رسانی کالا"
+
+msgid "Uses the device share sheet, or copies the link."
+msgstr "برگهٔ اشتراک دستگاه را باز می‌کند، یا پیوند را کپی می‌کند."
+
+msgid "SKU on the product"
+msgstr "شناسهٔ کالا روی محصول"
+
+msgid "Shown only when WooCommerce has a SKU. The copy button uses the clipboard."
+msgstr "فقط وقتی ووکامرس شناسه دارد نشان داده می‌شود. دکمهٔ کپی از کلیپ‌بورد استفاده می‌کند."
+
+msgid "Delivery note"
+msgstr "یادداشت ارسال"
+
+msgid "Under the buy button, and as a product tab. Leave blank to hide. Write only what the shop actually does."
+msgstr "زیر دکمهٔ خرید و به‌صورت زبانهٔ کالا. خالی بماند تا پنهان شود. فقط چیزی را بنویسید که فروشگاه واقعاً انجام می‌دهد."
+
+msgid "Catalog view"
+msgstr "نمای کاتالوگ"
+
+msgid "Grid or a quieter list. The choice stays on this device."
+msgstr "شبکه یا فهرستی آرام‌تر. انتخاب روی همین دستگاه می‌ماند."
+
+msgid "Load more"
+msgstr "نمایش بیشتر"
+
+msgid "Appends the next catalog page. Pagination remains when JavaScript is off."
+msgstr "صفحهٔ بعدی کاتالوگ را اضافه می‌کند. اگر جاوااسکریپت خاموش باشد، صفحه‌بندی می‌ماند."
+
+msgid "Minimum order"
+msgstr "حداقل سفارش"
+
+msgid "Cart subtotal after discounts, in store currency. 0 disables the limit. Checkout is blocked until the cart reaches it."
+msgstr "جمع سبد پس از تخفیف، به واحد پول فروشگاه. صفر یعنی بدون محدودیت. تا رسیدن سبد به این مبلغ، تسویه بسته است."
+
+msgid "Restock note"
+msgstr "یادداشت موجود شدن"
+
+msgid "Emails the shop when a visitor asks about an out-of-stock product. The address is not published."
+msgstr "وقتی بازدیدکننده دربارهٔ کالای ناموجود می‌پرسد، به فروشگاه ایمیل می‌شود. نشانی منتشر نمی‌شود."
+
+msgid "Order lookup"
+msgstr "پیگیری سفارش"
+
+msgid "Order number and email, on the account page. Nothing is shown unless both match."
+msgstr "شمارهٔ سفارش و ایمیل، در صفحهٔ حساب. تا وقتی هر دو یکی نباشند چیزی نشان داده نمی‌شود."
+
+msgid "Suggestions when empty"
+msgstr "پیشنهاد وقتی خالی است"
+
+msgid "A few in-stock products on a 404 and an empty search. Not presented as matches."
+msgstr "چند کالای موجود در صفحهٔ ۴۰۴ و جستجوی بی‌نتیجه. به‌عنوان نتیجهٔ جستجو نشان داده نمی‌شوند."
+
+msgid "Recently viewed on the product"
+msgstr "اخیراً دیده‌شده در صفحهٔ کالا"
+
+msgid "Under the product, from this browser. Hidden until another product has been opened."
+msgstr "زیر کالا، از همین مرورگر. تا وقتی کالای دیگری باز نشده پنهان است."
+
+msgid "Cross-sell in the cart"
+msgstr "کالای همراه در سبد"
+
+msgid "The first WooCommerce cross-sell that is not already in the cart. No invented pairings."
+msgstr "اولین کالای همراه ووکامرس که هنوز در سبد نیست. جفت‌سازی ساختگی ندارد."
+
+msgid "Footer widgets"
+msgstr "ابزارک‌های پابرگ"
+
+msgid "Off by default, so a previous theme’s demo widgets do not replace this footer."
+msgstr "پیش‌فرض خاموش است تا ابزارک‌های نمایشی قالب قبلی جای این پابرگ را نگیرند."
+
+msgid "Telegram"
+msgstr "تلگرام"
+
+msgid "Instagram"
+msgstr "اینستاگرام"
+
+msgid "WhatsApp"
+msgstr "واتساپ"
+
+msgid "Questions"
+msgstr "پرسش‌ها"
+
+msgid "Up to four questions. Empty ones are not shown."
+msgstr "تا چهار پرسش. موردهای خالی نشان داده نمی‌شوند."
+
+msgid "Before you ask"
+msgstr "پیش از پرسیدن"
+
+msgid "Question 1"
+msgstr "پرسش ۱"
+
+msgid "Answer 1"
+msgstr "پاسخ ۱"
+
+msgid "Question 2"
+msgstr "پرسش ۲"
+
+msgid "Answer 2"
+msgstr "پاسخ ۲"
+
+msgid "Question 3"
+msgstr "پرسش ۳"
+
+msgid "Answer 3"
+msgstr "پاسخ ۳"
+
+msgid "Question 4"
+msgstr "پرسش ۴"
+
+msgid "Answer 4"
+msgstr "پاسخ ۴"
+
+msgid "Quotes"
+msgstr "نقل‌قول‌ها"
+
+msgid "Written here. Not pulled from product reviews."
+msgstr "همین‌جا نوشته می‌شود. از دیدگاه کالاها گرفته نمی‌شود."
+
+msgid "In their words"
+msgstr "به زبان خودشان"
+
+msgid "Quote 1"
+msgstr "نقل‌قول ۱"
+
+msgid "Name 1"
+msgstr "نام ۱"
+
+msgid "Quote 2"
+msgstr "نقل‌قول ۲"
+
+msgid "Name 2"
+msgstr "نام ۲"
+
+msgid "Quote 3"
+msgstr "نقل‌قول ۳"
+
+msgid "Name 3"
+msgstr "نام ۳"
+
+msgid "Shop note"
+msgstr "یادداشت برای فروشگاه"
+
+msgid "An email to the shop. It is sent, not stored as a list."
+msgstr "ایمیلی به فروشگاه. فرستاده می‌شود و به‌صورت فهرست ذخیره نمی‌شود."
+
+msgid "Write to the shop"
+msgstr "نوشتن به فروشگاه"
+
+msgid "A short note is emailed to the shop. It is not added to a mailing list."
+msgstr "یک یادداشت کوتاه به فروشگاه ایمیل می‌شود. به فهرست پستی اضافه نمی‌شود."
+
+msgid "Send the note"
+msgstr "فرستادن یادداشت"
+
+msgid "SKU"
+msgstr "شناسه"
+
+msgid "Copy"
+msgstr "کپی"
+
+msgid "Share"
+msgstr "هم‌رسانی"
+
+msgid "Ask the shop"
+msgstr "پرسیدن از فروشگاه"
+
+msgid "Grid"
+msgstr "شبکه"
+
+msgid "List"
+msgstr "فهرست"
+
+msgid "Rated 4 and up"
+msgstr "امتیاز ۴ و بالاتر"
+
+msgid "Minimum order is %s."
+msgstr "حداقل سفارش %s است."
+
+msgid "%s more to reach the minimum order."
+msgstr "%s دیگر تا حداقل سفارش مانده است."
+
+msgid "You might also need"
+msgstr "شاید این را هم لازم داشته باشید"
+
+msgid "Try one of these"
+msgstr "یکی از این‌ها را ببینید"
+
+msgid "Your email"
+msgstr "ایمیل شما"
+
+msgid "Leave this field empty"
+msgstr "این فیلد را خالی بگذارید"
+
+msgid "Tell me when it’s back"
+msgstr "وقتی موجود شد خبرم کنید"
+
+msgid "Track an order"
+msgstr "پیگیری سفارش"
+
+msgid "Order number and the email used at checkout. Both have to match."
+msgstr "شمارهٔ سفارش و ایمیلی که هنگام تسویه وارد شده. هر دو باید یکی باشند."
+
+msgid "Order number"
+msgstr "شمارهٔ سفارش"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "Look up"
+msgstr "پیگیری"
+
+msgid "We could not find that order."
+msgstr "این سفارش پیدا نشد."
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Placed"
+msgstr "ثبت‌شده"
+
+msgid "Items"
+msgstr "اقلام"
+
+msgid "We’ll email the shop."
+msgstr "به فروشگاه ایمیل می‌زنیم."
+
+msgid "We already have that note."
+msgstr "این یادداشت را از قبل داریم."
+
+msgid "Note sent."
+msgstr "یادداشت فرستاده شد."
+
+msgid "Could not send the note."
+msgstr "یادداشت فرستاده نشد."
+
+msgid "Too many notes. Try again in a minute."
+msgstr "یادداشت‌ها زیاد شد. یک دقیقهٔ دیگر دوباره امتحان کنید."
+
+msgid "This product is available now."
+msgstr "این کالا الان موجود است."
+
+msgid "Note from the shop form — %s"
+msgstr "یادداشت از فرم فروشگاه — %s"
+
+msgid "A visitor asked to be written back at %s. This address was not stored."
+msgstr "بازدیدکننده‌ای خواست به %s پاسخ داده شود. این نشانی ذخیره نشد."
+
+msgid "Restock note — %s"
+msgstr "یادداشت موجود شدن — %s"
+
+msgid "%1$s asked to hear when %2$s is back. %3$s"
+msgstr "%1$s خواست وقتی %2$s موجود شد خبردار شود. %3$s"
+
+msgid "Link copied"
+msgstr "پیوند کپی شد"
+
+msgid "Copied"
+msgstr "کپی شد"
+
+msgid "Theme translations are loaded."
+msgstr "ترجمه‌های قالب بارگذاری شده‌اند."
+
+msgid "Theme translations are not loaded for this locale."
+msgstr "ترجمه‌های قالب برای این زبان بارگذاری نشده‌اند."
+
+msgid "Restock notes"
+msgstr "یادداشت‌های موجود شدن"
+
+msgid "No notes yet."
+msgstr "هنوز یادداشتی نیست."
+
+msgid "%1$s asked about the price of %2$s. %3$s"
+msgstr "%1$s دربارهٔ قیمت %2$s پرسید. %3$s"
+
+msgid "%s image"
+msgid_plural "%s images"
+msgstr[0] "%s تصویر"
+msgstr[1] "%s تصویر"
+
+msgid "A collapsed question form on the product. It is emailed, not stored."
+msgstr "فرم پرسش جمع‌شده روی کالا. ایمیل می‌شود و ذخیره نمی‌شود."
+
+msgid "A quiet mark on the card. 0 hides it. Sale and out-of-stock marks take the corner first."
+msgstr "نشان آرام روی کارت. صفر آن را پنهان می‌کند. نشان حراج و ناموجود اول گوشه را می‌گیرند."
+
+msgid "A quiet word on featured products. Not a discount."
+msgstr "یک واژهٔ آرام روی کالاهای ویژه. تخفیف نیست."
+
+msgid "A visitor asked about %1$s: %2$s Reply to %3$s. This was not stored."
+msgstr "بازدیدکننده‌ای دربارهٔ %1$s پرسید: %2$s به %3$s پاسخ دهید. این ذخیره نشد."
+
+msgid "Address"
+msgstr "نشانی"
+
+msgid "Ask about this product"
+msgstr "پرسش دربارهٔ این کالا"
+
+msgid "Attribute filters"
+msgstr "صافی ویژگی‌ها"
+
+msgid "Days a product stays new"
+msgstr "روزهایی که کالا نو می‌ماند"
+
+msgid "Direct share links"
+msgstr "پیوندهای مستقیم اشتراک"
+
+msgid "Emails the shop about the current price. The address is kept for the merchant, not published."
+msgstr "دربارهٔ قیمت فعلی به فروشگاه ایمیل می‌زند. نشانی برای فروشنده می‌ماند و منتشر نمی‌شود."
+
+msgid "Excerpt in the list"
+msgstr "خلاصه در نمای فهرست"
+
+msgid "Featured mark"
+msgstr "نشان ویژه"
+
+msgid "Hide out of stock"
+msgstr "پنهان کردن ناموجودها"
+
+msgid "Hours"
+msgstr "ساعت کاری"
+
+msgid "Image count"
+msgstr "شمار تصاویر"
+
+msgid "Note this price"
+msgstr "یادداشت این قیمت"
+
+msgid "One line of the short description, only in the list view."
+msgstr "یک خط از توضیح کوتاه، فقط در نمای فهرست."
+
+msgid "Out-of-stock products leave the catalog. Their own page stays."
+msgstr "کالاهای ناموجود از کاتالوگ می‌روند. صفحهٔ خودشان می‌ماند."
+
+msgid "Phone"
+msgstr "تلفن"
+
+msgid "Price note"
+msgstr "یادداشت قیمت"
+
+msgid "Price note — %s"
+msgstr "یادداشت قیمت — %s"
+
+msgid "Price notes"
+msgstr "یادداشت‌های قیمت"
+
+msgid "Product question"
+msgstr "پرسش کالا"
+
+msgid "Question about %s"
+msgstr "پرسش دربارهٔ %s"
+
+msgid "Question sent."
+msgstr "پرسش فرستاده شد."
+
+msgid "Rating filter"
+msgstr "صافی امتیاز"
+
+msgid "Sale filter"
+msgstr "صافی حراج"
+
+msgid "Send the question"
+msgstr "فرستادن پرسش"
+
+msgid "Shown in the footer. Leave blank to hide."
+msgstr "در پابرگ دیده می‌شود. خالی بماند تا پنهان شود."
+
+msgid "Shown when a product has more than one image."
+msgstr "وقتی کالا بیش از یک تصویر دارد دیده می‌شود."
+
+msgid "Suggestions in an empty cart"
+msgstr "پیشنهاد در سبد خالی"
+
+msgid "Telegram and WhatsApp beside the share button."
+msgstr "تلگرام و واتساپ کنار دکمهٔ اشتراک."
+
+msgid "The shop gets an email. The address stays on the product for the merchant, and is not published."
+msgstr "فروشگاه ایمیل می‌گیرد. نشانی روی کالا برای فروشنده می‌ماند و منتشر نمی‌شود."
+
+msgid "Two in-stock products in the empty cart drawer. Labeled as suggestions."
+msgstr "دو کالای موجود در کشوی سبد خالی. با برچسب پیشنهاد."
+
+msgid "WooCommerce attribute links in the filter column."
+msgstr "پیوند ویژگی‌های ووکامرس در ستون صافی."
+
+msgid "Your question"
+msgstr "پرسش شما"
