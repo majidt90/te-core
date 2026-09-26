@@ -77,6 +77,7 @@ function te_core_enqueue() {
 				'copied'        => __( 'Link copied', 'te-core' ),
 				'skuCopied'     => __( 'Copied', 'te-core' ),
 				'loadingMore'   => __( 'Loading', 'te-core' ),
+				'savedEmpty'    => __( 'Nothing saved yet.', 'te-core' ),
 			),
 			'features'      => array(
 				'predictive'   => te_core_on( 'show_search' ) && te_core_on( 'predictive_search' ),

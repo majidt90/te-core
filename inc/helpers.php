@@ -69,6 +69,38 @@ function te_core_is_rtl() {
 }
 
 /**
+ * A stored English date format reads backwards in Persian. Digits follow the digit setting.
+ *
+ * @param int|null $post_id Post ID.
+ * @return string
+ */
+function te_core_posted_date( $post_id = null ) {
+	$format = (string) get_option( 'date_format' );
+	$locale = function_exists( 'determine_locale' ) ? determine_locale() : get_locale();
+	if ( 0 === strpos( (string) $locale, 'fa' ) && in_array( $format, array( 'F j, Y', 'm/d/Y', 'n/j/Y' ), true ) ) {
+		$format = 'j F Y';
+	}
+	return te_core_digits( get_the_date( $format, $post_id ) );
+}
+
+/**
+ * Imported tags sometimes store the JavaScript text "[object Object]".
+ *
+ * @param string $label Term name or slug.
+ * @return bool
+ */
+function te_core_is_junk_label( $label ) {
+	$label = trim( wp_strip_all_tags( (string) $label ) );
+	if ( '' === $label ) {
+		return false;
+	}
+	if ( preg_match( '/^\[object\s+object\]$/i', $label ) ) {
+		return true;
+	}
+	return 'object-object' === sanitize_title( $label );
+}
+
+/**
  * Persian digits, respecting the explicit setting and the locale.
  *
  * @return bool

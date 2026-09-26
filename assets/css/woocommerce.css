@@ -152,7 +152,15 @@ ul.products li.product { width: auto !important; margin: 0 !important; float: no
 	line-height: 1.4;
 }
 
-.te-badge--muted { background: var(--te-ink); inset-inline-start: auto; inset-inline-end: 10px; }
+.te-badge--muted, .te-badge--new { background: var(--te-ink); inset-inline-start: auto; inset-inline-end: 10px; }
+.te-card__mark { margin: 0; color: var(--te-muted); font-size: 12px; font-weight: 600; }
+.te-card__excerpt { display: none; margin: 0; color: var(--te-ink-soft); font-size: 13px; }
+html.te-view-list .te-catalog__main .te-card__excerpt {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
 
 .te-card__tools {
 	position: absolute;
@@ -517,6 +525,19 @@ body:not(.single-product).te-shop-width-full .te-shop > .te-container {
 	text-underline-offset: 0.18em;
 }
 .te-sku .te-icon, .te-share .te-icon { width: 16px; height: 16px; }
+.te-sharelinks { display: flex; gap: 12px; margin: 4px 0 0; font-size: 13px; }
+.te-sharelinks a { color: var(--te-muted); }
+.te-gallery-count { margin: 8px 0 0; color: var(--te-muted); font-size: 13px; }
+.te-cartsuggest { margin-top: 18px; }
+.te-cartsuggest ul { list-style: none; display: grid; gap: 8px; }
+.te-cartsuggest a { text-decoration: none; }
+.te-cartsuggest span { display: block; color: var(--te-muted); font-size: 13px; }
+.woocommerce form .required,
+.woocommerce form .optional { margin-inline-start: 0.3em; }
+.woocommerce-form-login,
+.woocommerce-form-register,
+.woocommerce-ResetPassword,
+.lost_reset_password { max-width: 28rem; }
 .te-ask { margin: 8px 0 0; }
 
 .te-min { margin: 0 0 10px; color: var(--te-accent); font-size: 13px; }

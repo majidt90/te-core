@@ -54,6 +54,8 @@ Hooks inside those templates are kept. Other WooCommerce markup is styled, not c
 = 1.0.0 =
 * First release. Registry-driven settings, mixed-catalog storefront, Persian/RTL, and a performance-first WooCommerce integration.
 * Section width (contained, wide, full), catalog width, low-stock signal, compare, sticky buy bar, key specs, free-shipping meter, cart coupon, hover image, and removable filter chips.
+* Storefront copy fixes: system page titles, junk tags, empty prices, Persian dates, search control, footer mark, and saved-product pages.
+* Quiet extras, each with a setting: product question, price note, empty-cart suggestions, new and featured marks, list excerpt, direct share links, optional out-of-stock hiding, gallery count, and footer address lines.
 
 == Upgrade Notice ==
 

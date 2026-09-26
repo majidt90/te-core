@@ -267,7 +267,7 @@ ul { margin: 0; padding: 0; }
 	min-width: 0;
 }
 
-.custom-logo { height: 36px; width: auto; }
+.custom-logo { height: 36px; width: auto; max-width: 148px; object-fit: contain; }
 
 .te-logo__mark {
 	width: 36px;
@@ -292,6 +292,7 @@ ul { margin: 0; padding: 0; }
 }
 
 .te-search { position: relative; }
+.te-search--page { max-width: 28rem; margin: 12px 0 20px; }
 
 .te-search__input,
 .te-search input[type="search"] {
@@ -687,6 +688,15 @@ ul { margin: 0; padding: 0; }
 .te-content > h3,
 .te-content > blockquote { max-width: 68ch; }
 .te-content > * + * { margin-top: 0.8em; }
+.te-content img,
+.te-content video,
+.te-content svg,
+.te-content iframe { max-width: 100%; height: auto; }
+.te-content table { display: block; max-width: 100%; overflow-x: auto; }
+.te-content .wp-block-columns,
+.te-content .wp-block-gallery { max-width: 100%; }
+.te-content .alignwide,
+.te-content .alignfull { max-width: 100%; margin-inline: 0; }
 
 .te-empty, .te-empty-inline {
 	padding: 48px 0;
@@ -980,3 +990,18 @@ html.te-has-more .te-catalog__main .woocommerce-pagination { display: none; }
 
 .te-suggest-block { margin-top: 28px; }
 .te-suggest-block h2 { margin-bottom: 14px; }
+
+.te-store { list-style: none; margin: 12px 0 0; display: grid; gap: 6px; font-size: 14px; }
+.te-store span { color: var(--te-muted); }
+.te-saved { margin-top: 8px; }
+.te-askmore { margin-top: 12px; }
+.te-askmore summary { cursor: pointer; font-weight: 600; }
+.te-askmore textarea {
+	width: 100%;
+	min-height: 88px;
+	border: 1px solid var(--te-line-strong);
+	border-radius: 16px;
+	background: var(--te-surface);
+	padding: 10px 14px;
+	resize: vertical;
+}

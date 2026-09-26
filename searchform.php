@@ -13,5 +13,8 @@ defined( 'ABSPATH' ) || exit;
 	<?php if ( class_exists( 'WooCommerce' ) ) : ?>
 		<input type="hidden" name="post_type" value="product">
 	<?php endif; ?>
-	<button class="te-btn te-btn--primary" type="submit"><?php esc_html_e( 'Search', 'te-core' ); ?></button>
+	<button class="te-search__submit" type="submit">
+		<?php te_core_icon( 'search' ); ?>
+		<span class="screen-reader-text"><?php esc_html_e( 'Search', 'te-core' ); ?></span>
+	</button>
 </form>

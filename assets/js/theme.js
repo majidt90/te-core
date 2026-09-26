@@ -190,6 +190,10 @@
 	});
 
 	var wishKey = 'te_core_wishlist';
+	function numId(value) {
+		var n = parseInt(value, 10);
+		return n > 0 ? n : 0;
+	}
 	function readIds(key) {
 		try { return JSON.parse(localStorage.getItem(key) || '[]') || []; } catch (e) { return []; }
 	}
@@ -203,7 +207,7 @@
 		return unique.slice(0, 24);
 	}
 	function paintWish() {
-		var ids = readIds(wishKey);
+		var ids = readIds(wishKey).map(numId).filter(Boolean);
 		qsa('[data-te-wish]').forEach(function (btn) {
 			var on = ids.indexOf(parseInt(btn.getAttribute('data-te-wish'), 10)) !== -1;
 			btn.classList.toggle('is-on', on);
@@ -215,16 +219,22 @@
 		});
 	}
 	function renderWishlist() {
-		var box = qs('[data-te-wish-body]');
-		if (!box || !endpoints.cards) return;
-		var ids = readIds(wishKey);
+		var boxes = qsa('[data-te-wish-body]');
+		if (!boxes.length || !endpoints.cards) return;
+		var ids = readIds(wishKey).map(numId).filter(Boolean);
 		if (!ids.length) {
-			box.innerHTML = '<p class="te-empty-inline">' + (i18n.empty || '') + '</p>';
+			boxes.forEach(function (box) {
+				box.innerHTML = '<p class="te-empty-inline">' + escapeHtml(i18n.savedEmpty || '') + '</p>';
+			});
 			return;
 		}
 		fetch(endpoints.cards + '?ids=' + encodeURIComponent(ids.join(',')), { credentials: 'same-origin' })
 			.then(function (res) { return res.json(); })
-			.then(function (data) { box.innerHTML = (data && data.html) || ''; paintWish(); paintCompare(); });
+			.then(function (data) {
+				boxes.forEach(function (box) { box.innerHTML = (data && data.html) || ''; });
+				paintWish();
+				paintCompare();
+			});
 	}
 	if (features.wishlist) {
 		paintWish();
@@ -232,22 +242,25 @@
 			var btn = event.target.closest('[data-te-wish]');
 			if (!btn) return;
 			event.preventDefault();
-			var id = parseInt(btn.getAttribute('data-te-wish'), 10);
-			var ids = readIds(wishKey);
+			var id = numId(btn.getAttribute('data-te-wish'));
+			if (!id) return;
+			var ids = readIds(wishKey).map(numId).filter(Boolean);
 			var index = ids.indexOf(id);
 			if (index === -1) ids.push(id); else ids.splice(index, 1);
 			writeIds(wishKey, ids);
 			paintWish();
+			if (qs('[data-te-wish-page]')) renderWishlist();
 		});
 	}
 
-	if (cfg.productId) {
-		var recent = readIds('te_core_recent').filter(function (id) { return id !== cfg.productId; });
-		recent.unshift(cfg.productId);
+	var currentProduct = numId(cfg.productId);
+	if (currentProduct) {
+		var recent = readIds('te_core_recent').map(numId).filter(function (id) { return id && id !== currentProduct; });
+		recent.unshift(currentProduct);
 		writeIds('te_core_recent', recent);
 	}
 	qsa('[data-te-recent]').forEach(function (section) {
-		var ids = readIds('te_core_recent').filter(function (id) { return id !== cfg.productId; });
+		var ids = readIds('te_core_recent').map(numId).filter(function (id) { return id && id !== currentProduct; });
 		var limit = parseInt(section.getAttribute('data-count'), 10) || 4;
 		ids = ids.slice(0, limit);
 		if (!ids.length || !endpoints.cards) return;
@@ -436,24 +449,30 @@
 		});
 	}
 	function renderCompare() {
-		var box = qs('[data-te-compare-body]');
-		if (!box) return;
+		var boxes = qsa('[data-te-compare-body]');
+		if (!boxes.length) return;
 		var ids = compareIds();
 		if (!ids.length) {
-			box.innerHTML = '<p class="te-empty-inline">' + escapeHtml(i18n.compareEmpty || '') + '</p>';
+			boxes.forEach(function (box) {
+				box.innerHTML = '<p class="te-empty-inline">' + escapeHtml(i18n.compareEmpty || '') + '</p>';
+			});
 			return;
 		}
 		if (!endpoints.compare) return;
-		box.setAttribute('aria-busy', 'true');
+		boxes.forEach(function (box) { box.setAttribute('aria-busy', 'true'); });
 		fetch(endpoints.compare + '?ids=' + encodeURIComponent(ids.join(',')), { credentials: 'same-origin' })
 			.then(function (res) { return res.json(); })
 			.then(function (data) {
-				box.innerHTML = (data && data.html) || '';
-				box.removeAttribute('aria-busy');
+				boxes.forEach(function (box) {
+					box.innerHTML = (data && data.html) || '';
+					box.removeAttribute('aria-busy');
+				});
 			})
 			.catch(function () {
-				box.innerHTML = '<p class="te-empty-inline">' + escapeHtml(i18n.error || '') + '</p>';
-				box.removeAttribute('aria-busy');
+				boxes.forEach(function (box) {
+					box.innerHTML = '<p class="te-empty-inline">' + escapeHtml(i18n.error || '') + '</p>';
+					box.removeAttribute('aria-busy');
+				});
 			});
 	}
 	if (features.compare) {
@@ -610,6 +629,9 @@
 			btn.setAttribute('aria-pressed', (btn.getAttribute('data-te-view') === 'list') === list ? 'true' : 'false');
 		});
 	});
+
+	if (qs('[data-te-wish-page]')) renderWishlist();
+	if (qs('[data-te-compare-page]')) renderCompare();
 
 	var more = qs('[data-te-more]');
 	var moreBtn = qs('[data-te-more-btn]');

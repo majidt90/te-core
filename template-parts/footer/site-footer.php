@@ -10,10 +10,15 @@ defined( 'ABSPATH' ) || exit;
 <footer class="te-footer">
 	<div class="te-container te-footer__grid">
 		<div class="te-footer__brand">
-			<a class="te-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<span class="te-logo__mark" aria-hidden="true">TE</span>
-				<span class="te-logo__name"><?php bloginfo( 'name' ); ?></span>
-			</a>
+			<?php if ( has_custom_logo() ) : ?>
+				<?php the_custom_logo(); ?>
+			<?php else : ?>
+				<a class="te-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<span class="te-logo__mark" aria-hidden="true">TE</span>
+					<span class="te-logo__name"><?php bloginfo( 'name' ); ?></span>
+				</a>
+			<?php endif; ?>
+			<?php te_core_store_details(); ?>
 			<?php if ( get_bloginfo( 'description' ) ) : ?>
 				<p><?php bloginfo( 'description' ); ?></p>
 			<?php endif; ?>
@@ -136,11 +141,19 @@ function te_core_footer_fallback() {
  * @return void
  */
 function te_core_footer_pages() {
+	$exclude = array( (int) get_option( 'page_on_front' ) );
+	if ( function_exists( 'wc_get_page_id' ) ) {
+		foreach ( array( 'shop', 'cart', 'checkout', 'myaccount' ) as $key ) {
+			$exclude[] = (int) wc_get_page_id( $key );
+		}
+	}
+	$exclude = array_filter( array_unique( $exclude ) );
 	wp_list_pages(
 		array(
 			'title_li' => '',
 			'depth'    => 1,
 			'number'   => 6,
+			'exclude'  => implode( ',', $exclude ),
 		)
 	);
 }

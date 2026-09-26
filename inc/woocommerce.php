@@ -19,6 +19,10 @@ add_action( 'woocommerce_single_product_summary', 'te_core_low_stock_badge_summa
 add_action( 'woocommerce_single_product_summary', 'te_core_product_specs', 25 );
 add_action( 'wp', 'te_core_single_sidebar' );
 add_action( 'wp_footer', 'te_core_buybar', 5 );
+add_filter( 'get_the_terms', 'te_core_clean_product_terms', 10, 3 );
+add_filter( 'woocommerce_get_breadcrumb', 'te_core_clean_breadcrumb' );
+add_filter( 'the_title', 'te_core_system_page_title', 10, 2 );
+add_action( 'woocommerce_product_thumbnails', 'te_core_gallery_count', 30 );
 
 /**
  * Replace WC wrappers and the loop chrome that would fight the card.
@@ -143,7 +147,7 @@ function te_core_product_query( $q ) {
 		$ids = wc_get_product_ids_on_sale();
 		$q->set( 'post__in', $ids ? $ids : array( 0 ) );
 	}
-	if ( ! empty( $_GET['instock'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( te_core_on( 'hide_oos' ) || ! empty( $_GET['instock'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$tax[] = array(
 			'taxonomy' => 'product_visibility',
 			'field'    => 'name',
@@ -275,4 +279,164 @@ function te_core_no_products() {
 	get_search_form();
 	echo '</div>';
 	te_core_suggest_products();
+}
+
+/**
+ * Drop the default category and imported junk tags on the storefront.
+ *
+ * @param array|WP_Error $terms    Terms.
+ * @param int            $post_id  Post ID.
+ * @param string         $taxonomy Taxonomy.
+ * @return array|WP_Error
+ */
+function te_core_clean_product_terms( $terms, $post_id, $taxonomy ) {
+	unset( $post_id );
+	if ( is_admin() || ! is_array( $terms ) ) {
+		return $terms;
+	}
+	if ( 'product_cat' !== $taxonomy && 'product_tag' !== $taxonomy ) {
+		return $terms;
+	}
+	$hidden = 'product_cat' === $taxonomy ? te_core_hidden_term_ids() : array();
+	$clean  = array();
+	foreach ( $terms as $term ) {
+		if ( ! $term instanceof WP_Term ) {
+			continue;
+		}
+		if ( in_array( (int) $term->term_id, $hidden, true ) ) {
+			continue;
+		}
+		if ( te_core_is_junk_label( $term->name ) || te_core_is_junk_label( $term->slug ) ) {
+			continue;
+		}
+		$clean[] = $term;
+	}
+	return $clean;
+}
+
+/**
+ * Breadcrumbs should not repeat a hidden department or a broken tag name.
+ *
+ * @param array $crumbs Crumbs.
+ * @return array
+ */
+function te_core_clean_breadcrumb( $crumbs ) {
+	if ( ! is_array( $crumbs ) ) {
+		return $crumbs;
+	}
+	$hidden = array();
+	foreach ( te_core_hidden_term_ids() as $id ) {
+		$link = get_term_link( (int) $id );
+		if ( ! is_wp_error( $link ) ) {
+			$hidden[] = untrailingslashit( (string) $link );
+		}
+	}
+	$pages = array();
+	if ( function_exists( 'wc_get_page_id' ) ) {
+		$labels = array(
+			'shop'      => __( 'Catalog', 'te-core' ),
+			'cart'      => __( 'Cart', 'te-core' ),
+			'checkout'  => __( 'Checkout', 'te-core' ),
+			'myaccount' => __( 'Account', 'te-core' ),
+		);
+		$english = array( 'Products', 'Shop', 'Cart', 'Checkout', 'My account', 'My Account' );
+		foreach ( $labels as $key => $label ) {
+			$id = (int) wc_get_page_id( $key );
+			if ( $id < 1 ) {
+				continue;
+			}
+			$link = get_permalink( $id );
+			$raw  = get_post_field( 'post_title', $id );
+			if ( $link && is_string( $raw ) && in_array( $raw, $english, true ) ) {
+				$pages[ untrailingslashit( $link ) ] = $label;
+			}
+		}
+	}
+	$clean = array();
+	foreach ( $crumbs as $crumb ) {
+		$label = isset( $crumb[0] ) ? wp_strip_all_tags( (string) $crumb[0] ) : '';
+		$url   = isset( $crumb[1] ) ? untrailingslashit( (string) $crumb[1] ) : '';
+		if ( te_core_is_junk_label( $label ) ) {
+			continue;
+		}
+		if ( $url && in_array( $url, $hidden, true ) ) {
+			continue;
+		}
+		if ( $url && isset( $pages[ $url ] ) ) {
+			$crumb[0] = $pages[ $url ];
+		}
+		$clean[] = $crumb;
+	}
+	return $clean;
+}
+
+/**
+ * English WooCommerce page titles, only when the stored title is still the default.
+ *
+ * @param string $title   Title.
+ * @param int    $post_id Post ID.
+ * @return string
+ */
+function te_core_system_page_title( $title, $post_id = 0 ) {
+	if ( is_admin() || ! function_exists( 'wc_get_page_id' ) ) {
+		return $title;
+	}
+	$post_id = (int) $post_id;
+	if ( $post_id < 1 || ! in_array( $title, array( 'Products', 'Shop', 'Cart', 'Checkout', 'My account', 'My Account' ), true ) ) {
+		return $title;
+	}
+	$raw = get_post_field( 'post_title', $post_id );
+	if ( ! is_string( $raw ) ) {
+		return $title;
+	}
+	$map = array(
+		'shop'      => array( 'Products', 'Shop' ),
+		'cart'      => array( 'Cart' ),
+		'checkout'  => array( 'Checkout' ),
+		'myaccount' => array( 'My account', 'My Account' ),
+	);
+	$labels = array(
+		'shop'      => __( 'Catalog', 'te-core' ),
+		'cart'      => __( 'Cart', 'te-core' ),
+		'checkout'  => __( 'Checkout', 'te-core' ),
+		'myaccount' => __( 'Account', 'te-core' ),
+	);
+	foreach ( $map as $key => $needles ) {
+		if ( $post_id !== (int) wc_get_page_id( $key ) ) {
+			continue;
+		}
+		if ( in_array( $raw, $needles, true ) ) {
+			return $labels[ $key ];
+		}
+	}
+	return $title;
+}
+
+/**
+ * How many pictures, when there is more than the cover.
+ *
+ * @return void
+ */
+function te_core_gallery_count() {
+	if ( ! te_core_on( 'gallery_count' ) ) {
+		return;
+	}
+	$product = $GLOBALS['product'] ?? null;
+	if ( ! is_a( $product, 'WC_Product' ) ) {
+		return;
+	}
+	$count = count( $product->get_gallery_image_ids() );
+	if ( $product->get_image_id() ) {
+		++$count;
+	}
+	if ( $count < 2 ) {
+		return;
+	}
+	echo '<p class="te-gallery-count">' . esc_html(
+		sprintf(
+			/* translators: %s: image count */
+			_n( '%s image', '%s images', $count, 'te-core' ),
+			te_core_digits( (string) $count )
+		)
+	) . '</p>';
 }

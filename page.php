@@ -22,6 +22,7 @@ get_header();
 			</header>
 			<div class="te-content te-container">
 				<?php the_content(); ?>
+				<?php if ( function_exists( 'te_core_saved_page' ) ) { te_core_saved_page(); } ?>
 				<?php
 				wp_link_pages(
 					array(

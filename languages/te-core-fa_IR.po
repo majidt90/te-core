@@ -1208,7 +1208,7 @@ msgid "Email"
 msgstr "ایمیل"
 
 msgid "Look up"
-msgstr "جستجو"
+msgstr "پیگیری"
 
 msgid "We could not find that order."
 msgstr "این سفارش پیدا نشد."
@@ -1270,3 +1270,118 @@ msgstr "یادداشت‌های موجود شدن"
 msgid "No notes yet."
 msgstr "هنوز یادداشتی نیست."
 
+msgid "%1$s asked about the price of %2$s. %3$s"
+msgstr "%1$s دربارهٔ قیمت %2$s پرسید. %3$s"
+
+msgid "%s image"
+msgid_plural "%s images"
+msgstr[0] "%s تصویر"
+msgstr[1] "%s تصویر"
+
+msgid "A collapsed question form on the product. It is emailed, not stored."
+msgstr "فرم پرسش جمع‌شده روی کالا. ایمیل می‌شود و ذخیره نمی‌شود."
+
+msgid "A quiet mark on the card. 0 hides it. Sale and out-of-stock marks take the corner first."
+msgstr "نشان آرام روی کارت. صفر آن را پنهان می‌کند. نشان حراج و ناموجود اول گوشه را می‌گیرند."
+
+msgid "A quiet word on featured products. Not a discount."
+msgstr "یک واژهٔ آرام روی کالاهای ویژه. تخفیف نیست."
+
+msgid "A visitor asked about %1$s: %2$s Reply to %3$s. This was not stored."
+msgstr "بازدیدکننده‌ای دربارهٔ %1$s پرسید: %2$s به %3$s پاسخ دهید. این ذخیره نشد."
+
+msgid "Address"
+msgstr "نشانی"
+
+msgid "Ask about this product"
+msgstr "پرسش دربارهٔ این کالا"
+
+msgid "Attribute filters"
+msgstr "صافی ویژگی‌ها"
+
+msgid "Days a product stays new"
+msgstr "روزهایی که کالا نو می‌ماند"
+
+msgid "Direct share links"
+msgstr "پیوندهای مستقیم اشتراک"
+
+msgid "Emails the shop about the current price. The address is kept for the merchant, not published."
+msgstr "دربارهٔ قیمت فعلی به فروشگاه ایمیل می‌زند. نشانی برای فروشنده می‌ماند و منتشر نمی‌شود."
+
+msgid "Excerpt in the list"
+msgstr "خلاصه در نمای فهرست"
+
+msgid "Featured mark"
+msgstr "نشان ویژه"
+
+msgid "Hide out of stock"
+msgstr "پنهان کردن ناموجودها"
+
+msgid "Hours"
+msgstr "ساعت کاری"
+
+msgid "Image count"
+msgstr "شمار تصاویر"
+
+msgid "Note this price"
+msgstr "یادداشت این قیمت"
+
+msgid "One line of the short description, only in the list view."
+msgstr "یک خط از توضیح کوتاه، فقط در نمای فهرست."
+
+msgid "Out-of-stock products leave the catalog. Their own page stays."
+msgstr "کالاهای ناموجود از کاتالوگ می‌روند. صفحهٔ خودشان می‌ماند."
+
+msgid "Phone"
+msgstr "تلفن"
+
+msgid "Price note"
+msgstr "یادداشت قیمت"
+
+msgid "Price note — %s"
+msgstr "یادداشت قیمت — %s"
+
+msgid "Price notes"
+msgstr "یادداشت‌های قیمت"
+
+msgid "Product question"
+msgstr "پرسش کالا"
+
+msgid "Question about %s"
+msgstr "پرسش دربارهٔ %s"
+
+msgid "Question sent."
+msgstr "پرسش فرستاده شد."
+
+msgid "Rating filter"
+msgstr "صافی امتیاز"
+
+msgid "Sale filter"
+msgstr "صافی حراج"
+
+msgid "Send the question"
+msgstr "فرستادن پرسش"
+
+msgid "Shown in the footer. Leave blank to hide."
+msgstr "در پابرگ دیده می‌شود. خالی بماند تا پنهان شود."
+
+msgid "Shown when a product has more than one image."
+msgstr "وقتی کالا بیش از یک تصویر دارد دیده می‌شود."
+
+msgid "Suggestions in an empty cart"
+msgstr "پیشنهاد در سبد خالی"
+
+msgid "Telegram and WhatsApp beside the share button."
+msgstr "تلگرام و واتساپ کنار دکمهٔ اشتراک."
+
+msgid "The shop gets an email. The address stays on the product for the merchant, and is not published."
+msgstr "فروشگاه ایمیل می‌گیرد. نشانی روی کالا برای فروشنده می‌ماند و منتشر نمی‌شود."
+
+msgid "Two in-stock products in the empty cart drawer. Labeled as suggestions."
+msgstr "دو کالای موجود در کشوی سبد خالی. با برچسب پیشنهاد."
+
+msgid "WooCommerce attribute links in the filter column."
+msgstr "پیوند ویژگی‌های ووکامرس در ستون صافی."
+
+msgid "Your question"
+msgstr "پرسش شما"

@@ -16,6 +16,9 @@ if ( ! $cart ) {
 	echo '<div class="te-empty-inline">';
 	echo '<p>' . esc_html__( 'Your cart is empty.', 'te-core' ) . '</p>';
 	echo '<a class="te-btn te-btn--primary" href="' . esc_url( te_core_shop_url() ) . '">' . esc_html__( 'Browse the catalog', 'te-core' ) . '</a>';
+	if ( function_exists( 'te_core_cart_suggestions' ) ) {
+		te_core_cart_suggestions();
+	}
 	echo '</div>';
 	return;
 }

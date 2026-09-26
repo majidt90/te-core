@@ -74,7 +74,9 @@ function te_core_website_schema() {
  */
 function te_core_image_attributes( $attr, $attachment, $size ) {
 	unset( $attachment );
-	if ( ! is_admin() && ! empty( $attr['src'] ) && false !== strpos( (string) $attr['src'], 'woocommerce-placeholder' ) ) {
+	$src   = isset( $attr['src'] ) ? (string) $attr['src'] : '';
+	$class = isset( $attr['class'] ) ? (string) $attr['class'] : '';
+	if ( ! is_admin() && ( false !== strpos( $src, 'woocommerce-placeholder' ) || false !== strpos( $class, 'woocommerce-placeholder' ) ) ) {
 		$attr['alt'] = '';
 	}
 	if ( is_admin() ) {

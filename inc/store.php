@@ -28,6 +28,13 @@ add_action( 'admin_post_te_core_restock', 'te_core_handle_restock' );
 add_action( 'admin_post_nopriv_te_core_track', 'te_core_handle_track' );
 add_action( 'admin_post_te_core_track', 'te_core_handle_track' );
 add_action( 'add_meta_boxes', 'te_core_restock_box' );
+add_action( 'woocommerce_cart_is_empty', 'te_core_cart_suggestions' );
+add_action( 'woocommerce_single_product_summary', 'te_core_product_question', 39 );
+add_action( 'woocommerce_single_product_summary', 'te_core_price_watch', 40 );
+add_action( 'admin_post_nopriv_te_core_question', 'te_core_handle_question' );
+add_action( 'admin_post_te_core_question', 'te_core_handle_question' );
+add_action( 'admin_post_nopriv_te_core_price', 'te_core_handle_price' );
+add_action( 'admin_post_te_core_price', 'te_core_handle_price' );
 
 /**
  * Avoid a flash of the grid when this device last chose the list.
@@ -84,6 +91,8 @@ function te_core_flash() {
 	$map = array(
 		'restock'     => __( 'We’ll email the shop.', 'te-core' ),
 		'restock_dup' => __( 'We already have that note.', 'te-core' ),
+		'question'    => __( 'Question sent.', 'te-core' ),
+		'price'       => __( 'We’ll email the shop.', 'te-core' ),
 		'note'        => __( 'Note sent.', 'te-core' ),
 		'note_fail'   => __( 'Could not send the note.', 'te-core' ),
 		'limit'       => __( 'Too many notes. Try again in a minute.', 'te-core' ),
@@ -117,6 +126,16 @@ function te_core_product_meta_tools() {
 		echo '<p class="te-share"><button type="button" data-te-share data-url="' . esc_url( $product->get_permalink() ) . '" data-title="' . esc_attr( $product->get_name() ) . '">';
 		te_core_icon( 'share' );
 		echo '<span>' . esc_html__( 'Share', 'te-core' ) . '</span></button></p>';
+	}
+	if ( te_core_on( 'share_links' ) ) {
+		$url  = $product->get_permalink();
+		$name = $product->get_name();
+		$tg   = 'https://t.me/share/url?url=' . rawurlencode( $url ) . '&text=' . rawurlencode( $name );
+		$wa   = 'https://wa.me/?text=' . rawurlencode( $name . ' ' . $url );
+		echo '<p class="te-sharelinks">';
+		echo '<a href="' . esc_url( $tg ) . '" rel="noopener noreferrer">' . esc_html__( 'Telegram', 'te-core' ) . '</a>';
+		echo '<a href="' . esc_url( $wa ) . '" rel="noopener noreferrer">' . esc_html__( 'WhatsApp', 'te-core' ) . '</a>';
+		echo '</p>';
 	}
 }
 
@@ -742,17 +761,27 @@ function te_core_handle_track() {
 function te_core_restock_box() {
 	$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$saved   = $post_id ? get_post_meta( $post_id, '_te_core_restock', true ) : array();
-	if ( ! is_array( $saved ) || ! $saved ) {
-		return;
+	if ( is_array( $saved ) && $saved ) {
+		add_meta_box(
+			'te_core_restock',
+			__( 'Restock notes', 'te-core' ),
+			'te_core_restock_box_html',
+			'product',
+			'side',
+			'low'
+		);
 	}
-	add_meta_box(
-		'te_core_restock',
-		__( 'Restock notes', 'te-core' ),
-		'te_core_restock_box_html',
-		'product',
-		'side',
-		'low'
-	);
+	$prices = get_post_meta( $post_id, '_te_core_pricewatch', true );
+	if ( is_array( $prices ) && $prices ) {
+		add_meta_box(
+			'te_core_pricewatch',
+			__( 'Price notes', 'te-core' ),
+			'te_core_price_box_html',
+			'product',
+			'side',
+			'low'
+		);
+	}
 }
 
 /**
@@ -808,4 +837,238 @@ function te_core_find_order( $number ) {
 		}
 	}
 	return null;
+}
+
+/**
+ * Footer address, phone, and hours. Each line hides when empty.
+ *
+ * @return void
+ */
+function te_core_store_details() {
+	$rows = array(
+		'store_address' => __( 'Address', 'te-core' ),
+		'store_phone'   => __( 'Phone', 'te-core' ),
+		'store_hours'   => __( 'Hours', 'te-core' ),
+	);
+	$ready = array();
+	foreach ( $rows as $key => $label ) {
+		$value = trim( (string) te_core_get( $key ) );
+		if ( '' !== $value ) {
+			$ready[] = array( $label, $value );
+		}
+	}
+	if ( ! $ready ) {
+		return;
+	}
+	echo '<ul class="te-store">';
+	foreach ( $ready as $row ) {
+		echo '<li><span>' . esc_html( $row[0] ) . '</span> ' . esc_html( $row[1] ) . '</li>';
+	}
+	echo '</ul>';
+}
+
+/**
+ * A few suggestions inside an empty cart. Not search results.
+ *
+ * @return void
+ */
+function te_core_cart_suggestions() {
+	if ( ! te_core_on( 'cart_suggestions' ) || ! function_exists( 'wc_get_products' ) ) {
+		return;
+	}
+	$products = wc_get_products(
+		array(
+			'status'       => 'publish',
+			'limit'        => 2,
+			'orderby'      => 'date',
+			'order'        => 'DESC',
+			'stock_status' => 'instock',
+		)
+	);
+	if ( ! $products ) {
+		return;
+	}
+	echo '<div class="te-cartsuggest"><p class="te-kicker">' . esc_html__( 'Try one of these', 'te-core' ) . '</p><ul>';
+	foreach ( $products as $product ) {
+		echo '<li><a href="' . esc_url( $product->get_permalink() ) . '">' . esc_html( $product->get_name() ) . '</a>';
+		echo '<span>' . wp_kses_post( $product->get_price_html() ) . '</span></li>';
+	}
+	echo '</ul></div>';
+}
+
+/**
+ * Wishlist and compare pages are otherwise an empty title.
+ *
+ * @return void
+ */
+function te_core_saved_page() {
+	if ( ! is_page() ) {
+		return;
+	}
+	$slug = get_post_field( 'post_name', get_queried_object_id() );
+	if ( 'wishlist' === $slug && te_core_on( 'show_wishlist' ) ) {
+		echo '<div class="te-saved" data-te-wish-page><div data-te-wish-body><p class="te-empty-inline">' . esc_html__( 'Nothing saved yet.', 'te-core' ) . '</p></div></div>';
+	}
+	if ( 'compare' === $slug && te_core_on( 'show_compare' ) && class_exists( 'WooCommerce' ) ) {
+		echo '<div class="te-saved" data-te-compare-page><div data-te-compare-body><p class="te-empty-inline">' . esc_html__( 'Nothing to compare yet.', 'te-core' ) . '</p></div></div>';
+	}
+}
+
+/**
+ * Question about this product. Collapsed so the buy box stays quiet.
+ *
+ * @return void
+ */
+function te_core_product_question() {
+	if ( ! te_core_on( 'product_question' ) ) {
+		return;
+	}
+	$product = $GLOBALS['product'] ?? null;
+	if ( ! is_a( $product, 'WC_Product' ) ) {
+		return;
+	}
+	echo '<details class="te-askmore"><summary>' . esc_html__( 'Ask about this product', 'te-core' ) . '</summary>';
+	echo '<form class="te-noteform" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+	echo '<input type="hidden" name="action" value="te_core_question">';
+	echo '<input type="hidden" name="product_id" value="' . esc_attr( (string) $product->get_id() ) . '">';
+	wp_nonce_field( 'te_core_question', 'te_core_question_nonce' );
+	echo '<label class="screen-reader-text" for="te-question-email">' . esc_html__( 'Your email', 'te-core' ) . '</label>';
+	echo '<input id="te-question-email" type="email" name="te_email" required maxlength="80" autocomplete="email" placeholder="' . esc_attr__( 'Your email', 'te-core' ) . '">';
+	echo '<label class="screen-reader-text" for="te-question-text">' . esc_html__( 'Your question', 'te-core' ) . '</label>';
+	echo '<textarea id="te-question-text" name="te_message" required maxlength="400" rows="3" placeholder="' . esc_attr__( 'Your question', 'te-core' ) . '"></textarea>';
+	echo '<label class="te-hp" for="te-question-company">' . esc_html__( 'Leave this field empty', 'te-core' ) . '</label>';
+	echo '<input class="te-hp" id="te-question-company" type="text" name="te_company" tabindex="-1" autocomplete="off">';
+	echo '<button class="te-btn te-btn--ghost" type="submit">' . esc_html__( 'Send the question', 'te-core' ) . '</button></form></details>';
+}
+
+/**
+ * Email the shop a question. The address is not stored.
+ *
+ * @return void
+ */
+function te_core_handle_question() {
+	$nonce = isset( $_POST['te_core_question_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['te_core_question_nonce'] ) ) : '';
+	if ( ! wp_verify_nonce( $nonce, 'te_core_question' ) || ! te_core_honeypot_clear() ) {
+		te_core_redirect_note( 'expired' );
+	}
+	if ( ! te_core_rate_ok( 'question', 4, MINUTE_IN_SECONDS ) ) {
+		te_core_redirect_note( 'limit' );
+	}
+	$id      = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
+	$email   = isset( $_POST['te_email'] ) ? sanitize_email( wp_unslash( $_POST['te_email'] ) ) : '';
+	$message = isset( $_POST['te_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['te_message'] ) ) : '';
+	$message = te_core_limit_text( $message, 400 );
+	$product = function_exists( 'wc_get_product' ) ? wc_get_product( $id ) : null;
+	if ( ! $product || ! is_email( $email ) || '' === trim( $message ) ) {
+		te_core_redirect_note( 'note_fail' );
+	}
+	$sent = wp_mail(
+		get_option( 'admin_email' ),
+		sprintf(
+			/* translators: %s: product name */
+			__( 'Question about %s', 'te-core' ),
+			$product->get_name()
+		),
+		sprintf(
+			/* translators: 1: product name, 2: question, 3: email */
+			__( 'A visitor asked about %1$s: %2$s Reply to %3$s. This was not stored.', 'te-core' ),
+			$product->get_name(),
+			$message,
+			$email
+		)
+	);
+	te_core_redirect_note( $sent ? 'question' : 'note_fail' );
+}
+
+/**
+ * A note that the visitor wants the shop to see this price. Not an automatic watcher.
+ *
+ * @return void
+ */
+function te_core_price_watch() {
+	if ( ! te_core_on( 'price_watch' ) ) {
+		return;
+	}
+	$product = $GLOBALS['product'] ?? null;
+	if ( ! is_a( $product, 'WC_Product' ) || '' === $product->get_price() || ! $product->is_in_stock() ) {
+		return;
+	}
+	echo '<details class="te-askmore"><summary>' . esc_html__( 'Note this price', 'te-core' ) . '</summary>';
+	echo '<p>' . esc_html__( 'The shop gets an email. The address stays on the product for the merchant, and is not published.', 'te-core' ) . '</p>';
+	echo '<form class="te-noteform" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+	echo '<input type="hidden" name="action" value="te_core_price">';
+	echo '<input type="hidden" name="product_id" value="' . esc_attr( (string) $product->get_id() ) . '">';
+	wp_nonce_field( 'te_core_price', 'te_core_price_nonce' );
+	echo '<label class="screen-reader-text" for="te-price-email">' . esc_html__( 'Your email', 'te-core' ) . '</label>';
+	echo '<input id="te-price-email" type="email" name="te_email" required maxlength="80" autocomplete="email" placeholder="' . esc_attr__( 'Your email', 'te-core' ) . '">';
+	echo '<label class="te-hp" for="te-price-company">' . esc_html__( 'Leave this field empty', 'te-core' ) . '</label>';
+	echo '<input class="te-hp" id="te-price-company" type="text" name="te_company" tabindex="-1" autocomplete="off">';
+	echo '<button class="te-btn te-btn--ghost" type="submit">' . esc_html__( 'Note this price', 'te-core' ) . '</button></form></details>';
+}
+
+/**
+ * Store a price note and email the shop.
+ *
+ * @return void
+ */
+function te_core_handle_price() {
+	$nonce = isset( $_POST['te_core_price_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['te_core_price_nonce'] ) ) : '';
+	if ( ! wp_verify_nonce( $nonce, 'te_core_price' ) || ! te_core_honeypot_clear() ) {
+		te_core_redirect_note( 'expired' );
+	}
+	if ( ! te_core_rate_ok( 'price', 4, MINUTE_IN_SECONDS ) ) {
+		te_core_redirect_note( 'limit' );
+	}
+	$id      = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
+	$email   = isset( $_POST['te_email'] ) ? sanitize_email( wp_unslash( $_POST['te_email'] ) ) : '';
+	$product = function_exists( 'wc_get_product' ) ? wc_get_product( $id ) : null;
+	if ( ! $product || ! is_email( $email ) || '' === $product->get_price() ) {
+		te_core_redirect_note( 'note_fail' );
+	}
+	$saved = get_post_meta( $id, '_te_core_pricewatch', true );
+	$saved = is_array( $saved ) ? $saved : array();
+	$key = strtolower( $email );
+	if ( in_array( $key, $saved, true ) ) {
+		te_core_redirect_note( 'restock_dup' );
+	}
+	$sent = wp_mail(
+		get_option( 'admin_email' ),
+		sprintf(
+			/* translators: %s: product name */
+			__( 'Price note — %s', 'te-core' ),
+			$product->get_name()
+		),
+		sprintf(
+			/* translators: 1: email, 2: product name, 3: URL */
+			__( '%1$s asked about the price of %2$s. %3$s', 'te-core' ),
+			$email,
+			$product->get_name(),
+			$product->get_permalink()
+		)
+	);
+	if ( ! $sent ) {
+		te_core_redirect_note( 'note_fail' );
+	}
+	$saved[] = $key;
+	update_post_meta( $id, '_te_core_pricewatch', array_slice( $saved, -50 ) );
+	te_core_redirect_note( 'price' );
+}
+
+/**
+ * Price-note meta box.
+ *
+ * @param WP_Post $post Product.
+ * @return void
+ */
+function te_core_price_box_html( $post ) {
+	$saved = get_post_meta( $post->ID, '_te_core_pricewatch', true );
+	if ( ! is_array( $saved ) || ! $saved ) {
+		echo '<p>' . esc_html__( 'No notes yet.', 'te-core' ) . '</p>';
+		return;
+	}
+	echo '<ul>';
+	foreach ( $saved as $email ) {
+		echo '<li>' . esc_html( (string) $email ) . '</li>';
+	}
+	echo '</ul>';
 }

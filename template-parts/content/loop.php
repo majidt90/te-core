@@ -40,7 +40,7 @@ defined( 'ABSPATH' ) || exit;
 								<?php the_post_thumbnail( 'medium_large' ); ?>
 							</a>
 						<?php endif; ?>
-						<p class="te-card__cat"><?php echo esc_html( get_the_date() ); ?></p>
+						<p class="te-card__cat"><?php echo esc_html( te_core_posted_date() ); ?></p>
 						<h2 class="te-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 						<p><?php echo esc_html( wp_trim_words( get_the_excerpt(), 22 ) ); ?></p>
 					</article>

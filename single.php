@@ -17,7 +17,7 @@ get_header();
 		<article <?php post_class(); ?>>
 			<header class="te-pagehead">
 				<div class="te-container te-narrow">
-					<p class="te-kicker"><?php echo esc_html( get_the_date() ); ?></p>
+					<p class="te-kicker"><?php echo esc_html( te_core_posted_date() ); ?></p>
 					<h1><?php the_title(); ?></h1>
 				</div>
 			</header>
